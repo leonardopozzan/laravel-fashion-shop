@@ -6,4 +6,6 @@ export const store = reactive({
 
     imagePath: 'http://127.0.0.1:8000/storage/',
 
+    menuItems: ['Home', 'Blog', 'About', 'Contact']
+
 });
