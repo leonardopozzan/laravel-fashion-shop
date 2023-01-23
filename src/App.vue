@@ -1,9 +1,9 @@
 <template>
-  <HeaderComponent/>
+  <HeaderComponent />
   <div>
-     {{ title }}
+    <router-view></router-view>
   </div>
-  <FooterComponent/>
+  <FooterComponent />
 </template>
 
 <script>
@@ -11,13 +11,13 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 
 
-  export default {
-    data() {
-        return {
-            title: "Hello world!"
-        };
-    },
-    components: { HeaderComponent , FooterComponent }
+export default {
+  data() {
+    return {
+      title: "Hello world!"
+    };
+  },
+  components: { HeaderComponent, FooterComponent }
 }
 </script>
 
