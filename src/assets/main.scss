@@ -6,6 +6,7 @@ $fa-font-path : "./webfonts";
 @import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 
+
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,800&display=swap');
 
 
@@ -16,6 +17,7 @@ $fa-font-path : "./webfonts";
 }
 body {
     font-family: 'Prompt', sans-serif;
+    background-color: #e0e0e0;
 }
 ul{
     list-style: none;

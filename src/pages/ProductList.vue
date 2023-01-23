@@ -1,27 +1,28 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="(product, i) in products" :key="i">{{ product.name }}</li>
-        </ul>
-    </div>
+    <section>
+        <div class="my-container">
+            <h1 class="titolo">Make up</h1> 
+            <div class="carta" v-for="(product, i) in products" :key="i">
+                <CardComponent :product="product" />
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
 
 import axios from 'axios';
 import { store } from '../store';
-
+import CardComponent from '../components/CardComponent.vue';
 export default {
     name: 'ProductList',
-
-
+    components: { CardComponent },
     data() {
 
         return {
-
+            store,
             products: [],
-            currentPage: 1,
-
+           
         }
 
     },
@@ -51,7 +52,7 @@ export default {
         this.getProducts();
 
     },
-
+    components: { CardComponent }
 
 
 
@@ -61,5 +62,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/partials/variables' as *;
+.my-container{
+    margin: 0 auto;
+    max-width: 1000px;
+    
+    // background-color: rgb(206, 99, 179);
 
+}
+.carta{
+    margin-bottom: 30px;
+}
+.titolo{
+    margin-bottom: 20px;
+    color: $pink;
+}
 </style>
