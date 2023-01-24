@@ -38,7 +38,7 @@ export default {
 
 .hero {
     position: relative;
-    color: $ligth;
+    color: $lightpink;
 
 
     .overlay {

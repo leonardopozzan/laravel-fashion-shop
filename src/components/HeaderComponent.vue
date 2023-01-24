@@ -46,7 +46,7 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    color: $hover-color;
+    color: $pink;
     font-weight: $font-w-medium;
     font-size: $menu-font;
     z-index: 1000;
@@ -57,7 +57,7 @@ export default {
             li {
                 a {
                     &:hover {
-                        color: $menuItemsColor;
+                        color: $gray;
                     }
                 }
             }

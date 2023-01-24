@@ -29,14 +29,14 @@ export default {
         left: 50%;
         transform: translate(-50%, 50%);
         border: 0px;
-        background-color: $hover-color;
+        background-color: $pink;
         color: $green;
         padding: 12px 26px;
         transition: all 0.2s ease-out;
 
         &:hover {
             background-color: $green;
-            color: $hover-color;
+            color: $pink;
         }
     }
 }
