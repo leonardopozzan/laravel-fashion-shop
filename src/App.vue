@@ -14,7 +14,7 @@ import FooterComponent from './components/FooterComponent.vue';
 export default {
   data() {
     return {
-      title: "Hello world!"
+      title: "Hello world!",
     };
   },
   components: { HeaderComponent, FooterComponent }
