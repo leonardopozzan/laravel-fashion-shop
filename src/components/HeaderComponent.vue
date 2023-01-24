@@ -4,7 +4,11 @@
             <div class="container-lg d-flex justify-content-between p-3">
                 <div class="nav-menu">
                     <ul class="d-flex">
-                        <li v-for="item in store.menuItems" class="mx-2 text-uppercase"><a href="#">{{ item }}</a></li>
+                        <li v-for="item in store.menuItems" class="mx-2 text-uppercase"><router-link
+                                :to="{ name: item.routeName }">{{
+    item.label
+                                }}</router-link>
+                        </li>
                     </ul>
                 </div>
                 <div class="socials-icon">
@@ -34,6 +38,7 @@ export default {
 
         }
     }
+
 
 }
 </script>

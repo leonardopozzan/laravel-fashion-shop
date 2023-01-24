@@ -19,7 +19,7 @@ $fa-font-path : "./webfonts";
 
 body {
     font-family: 'Prompt', sans-serif;
-    background-color: #e0e0e0;
+    background-color: $background;
 }
 
 ul {
@@ -39,4 +39,9 @@ i {
 
 img {
     max-width: 100%;
+}
+
+
+.nav-height {
+    height: 540px;
 }

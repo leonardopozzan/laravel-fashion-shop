@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="hero container-fluid text-center p-0">
+        <div class="hero container-fluid text-center p-0" :class="{ 'nav-height': !isVisible }">
             <div class="overlay"></div>
-            <img src="../img/heroimg.jpg" alt="hero">
+            <img src="../img/aloe.jpg" alt="hero">
             <h1>Boolucci Makeup</h1>
             <div class="card-position" v-if="isVisible">
                 <HeroCard></HeroCard>
@@ -39,7 +39,7 @@ export default {
 .hero {
     position: relative;
     color: $lightpink;
-
+    height: 75vh;
 
     .overlay {
         position: absolute;
@@ -48,7 +48,7 @@ export default {
         left: 0;
         bottom: 0;
         background-color: black;
-        opacity: 0.2;
+        opacity: 0.4;
     }
 
     img {

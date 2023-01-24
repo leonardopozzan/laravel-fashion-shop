@@ -1,7 +1,8 @@
 <template>
     <div class="hero-card">
-        <img src="../img/makeup-products.jpg" alt="products">
-        <a href="#"><button type="button">View more</button></a>
+        <div class="overlay"></div>
+        <img src="../img/main-image.jpg" alt="products">
+        <router-link :to="{ name: 'products' }"><button type="button">View more</button></router-link>
     </div>
 </template>
 
@@ -18,9 +19,20 @@ export default {
     width: 100%;
     position: relative;
 
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: black;
+        opacity: 0;
+    }
+
     img {
         width: 100%;
         height: 100%;
+        border-radius: 20px;
     }
 
     button {
