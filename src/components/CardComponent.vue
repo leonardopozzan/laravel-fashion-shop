@@ -1,14 +1,14 @@
 <template>
-    <div class="my-card mb-3 bordo">
-        <div class="row g-0 divisorio">
+    <div class="my-card bordo">
+        <div class=" divisorio">
             <div class="images">
                 <img :src="`${store.imagePath}${product.image}`" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="description">
-                <div class="card-body">
-                    <h1 class="card-title">{{ product.name }}</h1>
+                <div class="my-card-body">
+                    <h1 class="my-card-title">{{ product.name }}</h1>
                     <div class="details">Description:</div>
-                    <p class="card-text"> {{
+                    <p class="my-card-text"> {{
                         truncateContent(product.description )
                     }}</p>
                     <div class="oltre-riga">
@@ -68,7 +68,7 @@ export default {
     height: 35vh;
 }
 
-.card-title {
+.my-card-title {
     cursor: pointer;
     padding-top: 10px;
 
@@ -78,7 +78,7 @@ export default {
     }
 }
 
-.card-body {
+.my-card-body {
     height: 100%;
     color: $green;
     display: flex;
@@ -88,9 +88,14 @@ export default {
 
 }
 
-.card-text {
+.my-card-text {
     height: 30vh;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
     margin-top: 10px;
     margin-left: 30px;
     margin-right: 20px;

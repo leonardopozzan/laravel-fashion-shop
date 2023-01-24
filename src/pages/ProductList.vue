@@ -6,6 +6,13 @@
                 <CardComponent :product="product" />
             </div>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination mt-5">
+                <li class="page-item " :class="{'disabled': currentPage === 1}"><a class="page-link" @click="getProducts(currentPage - 1)" :disabled="currentPage === 1">Previous</a></li>
+                <li class="page-item" :class="{'disabled': currentPage === n}" v-for="n in lastPage"><a class="page-link" @click="getProducts(n)" :disabled="currentPage === n">{{ n }}</a></li>
+                <li class="page-item" :class="{'disabled': currentPage === lastPage}"><a class="page-link" @click="getProducts(currentPage + 1)" :disabled="currentPage === lastPage">Next</a></li>
+            </ul>
+        </nav>
     </section>
 </template>
 
@@ -22,7 +29,9 @@ export default {
         return {
             store,
             products: [],
-           
+            currentPage: 1,
+            lastPage: null,
+            total: 0,
         }
 
     },
@@ -30,17 +39,18 @@ export default {
 
     methods: {
 
-        getProducts() {
-
-            const data = {
-                params: { 'page': this.currentPage }
-            }
-            axios.get(`${store.apiUrl}/products`, data).then((response) => {
-                console.log(response.data.results)
-                // console.log(response.data.results);
+        getProducts(pagenum) {
+            axios.get(`${this.store.apiUrl}/products`, {
+                params: {
+                    page: pagenum
+                }
+            }).then((response) => {
+                //console.log(response.data.results);
                 this.products = response.data.results.data;
-
-            })
+                this.currentPage = response.data.results.current_page;
+                this.lastPage = response.data.results.last_page;
+                this.total = response.data.results.total;
+            });
         }
 
     },
@@ -76,5 +86,8 @@ export default {
 .titolo{
     margin-bottom: 20px;
     color: $pink;
+}
+.page-item{
+    cursor: pointer;
 }
 </style>
