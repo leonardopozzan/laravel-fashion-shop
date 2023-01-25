@@ -17,6 +17,15 @@ import BeautyCardComponent from './BeautyCardComponent.vue';
 export default {
     name: "BeautyProducts",
     components: { BeautyCardComponent },
+
+
+    data() {
+        return {
+        }
+    },
+
+
+
 }
 </script>
 
@@ -40,6 +49,7 @@ export default {
             height: 100%;
         }
     }
+
 
     .description {
         height: 100%;

@@ -15,8 +15,8 @@ export const store = reactive({
             routeName: 'products',
         },
         {
-            label: 'Team',
-            routeName: 'home',
+            label: 'Contact',
+            routeName: 'contact',
         },
         {
             label: 'About Us',
