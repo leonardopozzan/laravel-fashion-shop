@@ -47,7 +47,10 @@ export default {
         getProducts(pagenum) {
             axios.get(`${this.store.apiUrl}/products`, {
                 params: {
-                    page: pagenum
+                    page: pagenum,
+                    typeFilter: 8,
+                    brandFilter : '',
+                    categoryFilter : ''
                 }
             }).then((response) => {
                 //console.log(response.data.results);
