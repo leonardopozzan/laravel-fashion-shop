@@ -2,7 +2,7 @@
     <div>
         <div class="hero container-fluid text-center p-0" :class="{ 'nav-height': !isVisible }">
             <div class="overlay"></div>
-            <img src="../img/aloe.jpg" alt="hero">
+            <img src="../img/sfondo2-vale.jpg" alt="hero">
             <h1>Boolucci Makeup</h1>
             <div class="card-position" v-if="isVisible">
                 <HeroCard></HeroCard>

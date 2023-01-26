@@ -88,7 +88,7 @@ export default {
         .contact-us {
 
             padding: 64px 142px;
-            border: 18px solid $gray;
+            border: 18px solid $white;
             margin-bottom: 94px;
 
             h1 {

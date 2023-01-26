@@ -53,7 +53,7 @@ export default {
 .card-container {
     width: calc(100% / 3);
     height: 100vh;
-    background-color: $gray;
+    background-color: $rich-green;
     position: relative;
 
 

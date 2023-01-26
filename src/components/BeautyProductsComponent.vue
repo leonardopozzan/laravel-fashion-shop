@@ -1,5 +1,5 @@
 <template>
-    <div class="beauty-container d-flex align-items-center p-4">
+    <div class="beauty-container d-flex align-items-center">
         <div class="image">
             <img src="../img/test-image.jpg" alt="image-test">
         </div>
@@ -33,14 +33,17 @@ export default {
 @use '../assets/partials/variables' as *;
 
 .beauty-container {
-    height: 60vh;
-    background-color: $gray;
+    // height: 80vh;
+    padding: 100px 30px;
+    background-color: $white;
+    
 
     .image {
-        margin-top: -280px;
-        z-index: 999;
-        height: 100%;
-        width: 25vw;
+        // margin-top: -280px;
+        // z-index: 999;
+        // height: 70%;
+        width: 400px;
+        height: 600px;
         border-radius: 20px;
         overflow: hidden;
 

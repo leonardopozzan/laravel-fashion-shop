@@ -16,7 +16,7 @@ export default {
 @use '../assets/partials/variables' as *;
 
 footer {
-    background-color: $gray;
+    background-color: $white;
     border: 1px solid red;
 
 

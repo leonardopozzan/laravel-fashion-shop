@@ -62,7 +62,7 @@ export default {
             li {
                 a {
                     &:hover {
-                        color: $gray;
+                        color: $white;
                     }
                 }
             }

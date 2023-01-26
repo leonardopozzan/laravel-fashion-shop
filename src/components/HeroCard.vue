@@ -1,7 +1,7 @@
 <template>
     <div class="hero-card">
         <div class="overlay"></div>
-        <img src="../img/main-image.jpg" alt="products">
+        <img src="../img/img-leo.jpg" alt="products">
         <router-link :to="{ name: 'products' }"><button type="button">View more</button></router-link>
     </div>
 </template>
