@@ -34,7 +34,7 @@ export default {
 
 .beauty-container {
     // height: 80vh;
-    padding: 100px 30px;
+    padding: 200px 30px;
     background-color: $white;
     
 
