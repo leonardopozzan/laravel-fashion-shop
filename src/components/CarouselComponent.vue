@@ -216,19 +216,6 @@ html, body {
   }
 }
 
-.parallax {
-    background-image: url("../img/aloe.jpg");
-
-
-    height: 100%;
-
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-
 h2 {
     font-size: $font-medium-large;
     font-weight: bold;

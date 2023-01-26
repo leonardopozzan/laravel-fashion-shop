@@ -62,7 +62,7 @@ export default {
     }
 
     &:last-child {
-        background-color: $lightpink;
+        background-color: $prova-pink;
     }
 
     .image {
