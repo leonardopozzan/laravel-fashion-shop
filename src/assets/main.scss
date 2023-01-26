@@ -9,6 +9,7 @@ $fa-font-path : "./webfonts";
 @import 'bootstrap/scss/bootstrap.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 
 * {
@@ -19,7 +20,7 @@ $fa-font-path : "./webfonts";
 
 body {
     font-family: 'Prompt', sans-serif;
-    background-color: $background;
+    // background-color: $background;
 }
 
 ul {
@@ -43,5 +44,5 @@ img {
 
 
 .nav-height {
-    height: 540px;
+    height: 355px !important;
 }
