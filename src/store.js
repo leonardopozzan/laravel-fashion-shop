@@ -24,4 +24,74 @@ export const store = reactive({
         },
     ],
 
+
+    mainMenuItem: [
+
+        'Contact US',
+        'Help Center / FAQs',
+        'Shipping',
+        'Returns',
+        'Cult Concierge',
+        'Contact US',
+        'Contact US',
+
+    ],
+
+
+
+    dropDownMenuItem: [
+
+        {
+
+            title: 'About',
+
+            voices: [
+
+                'About',
+                'Careers',
+                'Glossary',
+                'People and Planet',
+
+            ],
+
+        },
+
+
+        {
+
+            title: 'Legal',
+
+            voices: [
+
+                'Terms & Conditions',
+                'Privacy Policy',
+                'Coockie Policy',
+                'Modern Slavery Policy',
+                'Accessibility',
+
+            ],
+
+
+        },
+
+
+        {
+
+
+            title: 'Find Out More',
+
+            voices: [
+
+                'Cult Status',
+                'Promotions',
+                'Affiliates',
+                'Refer A Friend',
+
+            ],
+
+        },
+
+    ],
+
+
 });
