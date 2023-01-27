@@ -3,12 +3,14 @@
   <div>
     <router-view></router-view>
   </div>
+  <BrandCarouselComponent></BrandCarouselComponent>
   <FooterComponent />
 </template>
 
 <script>
 import HeaderComponent from './components/HeaderComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import BrandCarouselComponent from './components/BrandCarouselComponent.vue';
 
 
 export default {
@@ -17,7 +19,7 @@ export default {
       title: "Hello world!",
     };
   },
-  components: { HeaderComponent, FooterComponent }
+  components: { HeaderComponent, FooterComponent, BrandCarouselComponent }
 }
 </script>
 

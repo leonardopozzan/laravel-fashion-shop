@@ -3,8 +3,6 @@
     <h2>Best Sellers</h2> 
     <div class="carousel">
         <div class="carousel__body">
-            <div class="carousel__prev"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="carousel__next"><i class="fa-solid fa-chevron-right"></i></div>
             <div class="carousel__slider">
             <div class="carousel__slider__item">
                 <div class="item__3d-frame">
@@ -71,6 +69,8 @@
             </div>
             </div>
         </div>
+        <div class="carousel__prev"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="carousel__next"><i class="fa-solid fa-chevron-right"></i></div>
     </div>
 </div>
 </template>
@@ -231,18 +231,21 @@ h2 {
   
   &__prev, &__next {
     position: absolute;
-    bottom: -15%;
+    top: 700px;
     transition: transform 0.25s ease;
+    transform-origin: 0 0;
     
     i {
       font-size: 45px;
       color: $rich-green;
       cursor: pointer;
+      
     }
   }
   
   &__prev:hover, &__next:hover { 
-    transform: scale(1.25); 
+    transform: scale(1); 
+    transform: translate( 10px);
   }  
   
   &__prev { left: 40%; }
