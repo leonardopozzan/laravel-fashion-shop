@@ -1,9 +1,6 @@
 <template>
     <div class="parallax">
         <div class="beauty-container d-flex align-items-center justify-content-end">
-            <!-- <div class="image">
-                <img src="../img/test-image.jpg" alt="image-test">
-            </div> -->
             <div class="description d-flex align-items-center justify-content-end">
                 <p><span>BEAUTY</span><span>PRODUCTS</span></p>
             </div>
