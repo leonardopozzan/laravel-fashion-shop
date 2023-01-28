@@ -54,6 +54,8 @@ export const store = reactive({
 
             ],
 
+            menuOpen: false,
+
         },
 
 
@@ -70,6 +72,8 @@ export const store = reactive({
                 'Accessibility',
 
             ],
+
+            menuOpen: false,
 
 
         },
@@ -88,6 +92,8 @@ export const store = reactive({
                 'Refer A Friend',
 
             ],
+
+            menuOpen: false,
 
         },
 

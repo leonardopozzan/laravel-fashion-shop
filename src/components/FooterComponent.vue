@@ -21,11 +21,13 @@
                         </ul>
                     </div>
                 </div>
-                <div class="menu-dropdown d-flex">
-                    <div v-for="items in store.dropDownMenuItem">
+                <div class="menu-dropdown" id="primary-container">
+                    <div class="container-dropdown" v-for="items in store.dropDownMenuItem"
+                        @click="items.menuOpen = !items.menuOpen">
                         <h6>{{ items.title }}</h6>
+                        <i class="fa-solid fa-angle-down"></i>
 
-                        <ul>
+                        <ul class="dropdown" :class="{ 'open': items.menuOpen }">
                             <li v-for="item in items.voices"><a href="#">{{ item }}</a></li>
                         </ul>
                     </div>
@@ -33,7 +35,7 @@
             </div>
 
             <div class="container-sm">
-                <h4 class="m-0 p-0 mt-5">Bolucci Team</h4>
+                <h4 class="m-0 mt-5">Bolucci Team</h4>
             </div>
         </div>
     </footer>
@@ -108,14 +110,21 @@ footer {
 
         .main-menu,
         .menu-dropdown {
+            display: flex;
             width: 50%;
             min-width: 200px;
 
             div {
 
+                width: 100%;
+
                 h6 {
                     padding: 16px;
                     margin: 0;
+                }
+
+                i {
+                    display: none;
                 }
 
                 ul {
@@ -165,6 +174,43 @@ footer {
 
     }
 
+}
+
+@media (max-width: 768px) {
+
+    #primary-container {
+        display: block;
+
+        .container-dropdown {
+            position: relative;
+
+            h6 {
+                cursor: pointer;
+                display: block;
+            }
+
+
+            i {
+                display: block;
+                position: absolute;
+                top: 16px;
+                right: 20px;
+            }
+
+            .open {
+                max-height: 200px !important;
+                overflow: visible;
+            }
+
+            .dropdown {
+                max-height: 0;
+                overflow: hidden;
+                transition: all 1.2s cubic-bezier(.215, .61, .355, 1);
+            }
+        }
+
+
+    }
 
 }
 </style>
