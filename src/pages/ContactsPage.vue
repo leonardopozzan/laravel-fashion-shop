@@ -1,6 +1,3 @@
-
-import ScrollTopComponent from '../components/ScrollTopComponent.vue';
-
 <template>
     <ContactComponent></ContactComponent>
     <ChatComponent />
