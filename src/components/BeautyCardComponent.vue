@@ -1,8 +1,8 @@
 <template>
-    <div class="cards-container row" id="container-media">
+    <div class="cards-container d-flex flex-wrap" id="container-media">
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180708-4-4bvqii.jpg" alt="">
+                <img src="img\open-uri20180630-4-xhqdne.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>No Filter Foundation</h4>
@@ -163,6 +163,17 @@ export default {
         #container-media {
             width: 100%;
         } ;
+        .image-card{
+            height: 30% !important;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        #container-media {
+            width: 100%;
+        } ;
+        .image-card{
+            height: 50% !important;
+        }
     }
 }
 </style>
