@@ -1,10 +1,9 @@
 <template>
-    <div class="beauty-container d-flex align-items-center">
-        <div class="image">
-            <img src="../img/test-image.jpg" alt="image-test">
-        </div>
-        <div class="description d-flex align-items-center justify-content-center">
-            <p><span>BEAUTY</span><span>PRODUCTS</span></p>
+    <div class="parallax">
+        <div class="beauty-container d-flex align-items-center justify-content-end">
+            <div class="description d-flex align-items-center justify-content-end">
+                <p><span>BEAUTY</span><span>PRODUCTS</span></p>
+            </div>
         </div>
     </div>
     <BeautyCardComponent></BeautyCardComponent>
@@ -32,10 +31,21 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/partials/variables' as *;
 
+.parallax {
+    background-image: url("img/deh.jpg");
+
+    height: 100%;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
 .beauty-container {
     // height: 80vh;
-    padding: 100px 30px;
-    background-color: $white;
+    margin-top: 200px;
+    padding: 200px 30px;
     
 
     .image {
@@ -61,7 +71,7 @@ export default {
         font-weight: $font-w-bold;
 
         p {
-            color: $green;
+            color: $white;
 
             span {
                 display: block;

@@ -1,87 +1,87 @@
 <template>
-    <div class="container-beauty-cards d-flex">
-        <div class="card-container">
-            <div class="image">
-                <img src="../img/test-image.jpg" alt="">
+    <div class="cards-container d-flex flex-wrap" id="container-media">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
+            <div class="image-card">
+                <img src="img\open-uri20180630-4-xhqdne.jpg" alt="">
             </div>
-
-            <div class="shop">
-                <h3 class="mb-4 text-center">Prova</h3>
-                <button class="custom-btn btn-12"><span>Click!</span><span>Read
-                        More</span></button>
+            <div class="mt-4">
+                <h4>No Filter Foundation</h4>
             </div>
-
+            <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
-
-        <div class="card-container">
-            <div class="image">
-                <img src="../img/test-image.jpg" alt="">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
+            <div class="image-card">
+                <img src="img\open-uri20180708-4-13okqci.jpg" alt="">
             </div>
-
-            <div class="shop">
-                <h3 class="mb-4 text-center">Prova</h3>
-                <button class="custom-btn btn-12"><span>Click!</span><span>Read
-                        More</span></button>
+            <div class="mt-4">
+                <h4>Lippie Pencil</h4>
             </div>
-
+            <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
-
-        <div class="card-container">
-            <div class="image">
-                <img src="../img/test-image.jpg" alt="">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
+            <div class="image-card">
+                <img src="img\open-uri20180630-4-1bl3btv.jpg" alt="">
             </div>
-
-            <div class="shop">
-                <h3 class="mb-4 text-center">Prova</h3>
-                <button class="custom-btn btn-12"><span>Click!</span><span>Read
-                        More</span></button>
+            <div class="mt-4">
+                <h4>Bronzer - loose</h4>
             </div>
-
+            <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
     </div>
+    
 </template>
 
 <script>
+
 export default {
-    name: 'BeautyCard',
+    name: 'BeautyCardComponent',
 }
 </script>
 
 <style lang="scss" scoped>
 @use '../assets/partials/variables' as *;
 
-.card-container {
-    width: calc(100% / 3);
-    height: 100vh;
-    background-color: $rich-green;
-    position: relative;
 
+.cards-container {
+    display: flex;
+    min-height: 70vh;
 
-    &:nth-child(2) {
-        background-color: $pink;
-    }
+    .single-card-container {
+        background-color: $rich-green;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-    &:last-child {
-        background-color: $lightpink;
-    }
+        &:nth-child(2) {
+            background-color: $pink;
+        }
 
-    .image {
-        object-fit: cover;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 20px;
-        overflow: hidden;
-    }
+        &:last-child {
+            background-color: $prova-pink;
+        }
 
+        .image-card {
+            width: 45%;
+            height: 50%;
+            overflow: hidden;
+            object-fit: fill;
+            img {
+                width: 100%;
+                height: 100%;
+                transition: 1.2s;
+                cursor: pointer;
 
-    .shop {
-        position: absolute;
-        bottom: 90px;
-        left: 50%;
-        transform: translateX(-50%);
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
 
+        }
+
+        div h4 {
+            color: $white;
+        }
 
         .btn-12 {
             position: relative;
@@ -92,6 +92,7 @@ export default {
             line-height: 42px;
             -webkit-perspective: 230px;
             perspective: 230px;
+            color: $white;
         }
 
         .btn-12 span {
@@ -104,7 +105,7 @@ export default {
             box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
                 7px 7px 20px 0px rgba(0, 0, 0, .1),
                 4px 4px 5px 0px rgba(0, 0, 0, .1);
-            border-radius: 5px;
+            // border-radius: 5px;
             margin: 0;
             text-align: center;
             -webkit-box-sizing: border-box;
@@ -158,5 +159,21 @@ export default {
 
     }
 
+    @media screen and (min-width: 768px) {
+        #container-media {
+            width: 100%;
+        } ;
+        .image-card{
+            height: 30% !important;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        #container-media {
+            width: 100%;
+        } ;
+        .image-card{
+            height: 50% !important;
+        }
+    }
 }
 </style>

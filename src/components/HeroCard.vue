@@ -1,7 +1,8 @@
 <template>
     <div class="hero-card">
         <div class="overlay"></div>
-        <img src="../img/img-leo.jpg" alt="products">
+        <video src="video\pexels-thirdman-8056845.mp4" controls autoplay muted loop class="w-100"></video>
+        <!-- <img src="../img/img-leo.jpg" alt="products"> -->
         <router-link :to="{ name: 'products' }"><button type="button">View more</button></router-link>
     </div>
 </template>
