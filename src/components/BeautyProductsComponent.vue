@@ -43,15 +43,10 @@ export default {
 
 }
 .beauty-container {
-    // height: 80vh;
     margin-top: 200px;
     padding: 200px 30px;
-    
 
     .image {
-        // margin-top: -280px;
-        // z-index: 999;
-        // height: 70%;
         width: 400px;
         height: 600px;
         border-radius: 20px;
