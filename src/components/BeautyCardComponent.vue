@@ -1,5 +1,5 @@
 <template>
-    <div class="cards-container">
+    <div class="cards-container row" id="container-media">
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
                 <img src="img\open-uri20180708-4-4bvqii.jpg" alt="">
@@ -65,7 +65,7 @@ export default {
             width: 45%;
             height: 50%;
             overflow: hidden;
-
+            object-fit: fill;
             img {
                 width: 100%;
                 height: 100%;
@@ -159,10 +159,9 @@ export default {
 
     }
 
-    @media screen and (max-width: 768px) {
-        .cards-container {
-            display: flex;
-            flex-direction: column;
+    @media screen and (min-width: 768px) {
+        #container-media {
+            width: 100%;
         } ;
     }
 }
