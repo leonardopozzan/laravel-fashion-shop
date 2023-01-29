@@ -1,24 +1,35 @@
 <template>
-    <div class="my-card bordo">
-        <div class=" divisorio">
-            <div class="images">
-                <img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="...">
-                <div class="price">{{ product.price }}&euro;</div>
-            </div>
-            <div class="description">
-                <div class="my-card-body">
-                    <div class="my-card-info d-flex flex-column">
-                        <h1 class="my-card-title mb-4">{{ product.name }}</h1>
-                        <!-- <div class="details">Description:</div> -->
-                        <p v-if="product.description" class="my-card-text"> {{ truncateContent(product.description) }}</p>
-                    </div>
-                    <div class="w-100">
-                        <div class="bd"></div>
-                        <div class="oltre-riga">
-                            <div>Rating:{{ product.rating }} </div>
-                            <div>{{ product.available ? 'Disponibile' : 'Non disponibile'  }}</div>
-                            <div><i class="fa-regular fa-heart"></i></div>
+    <div class="my-card">
+        <div class="images">
+            <img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="...">
+            <div class="price">{{ product.price }}&euro;</div>
+        </div>
+        <div class="description">
+            <div class="my-card-body">
+                <div class="my-card-info d-flex flex-column">
+                    <h1 class="my-card-title mb-4">{{ product.name }}</h1>
+                    <p v-if="product.description" class="my-card-text"> {{ truncateContent(product.description) }}</p>
+                    <div class="d-flex justify-content-around text-capitalize mb-4 filter">
+                        <div class="d-flex flex-column">
+                            <p class="mb-2">Tipo:</p>
+                            <a href="">{{ product.type.name }}</a>
                         </div>
+                        <div class="d-flex flex-column">
+                            <p class="mb-2">Categoria:</p>
+                            <a href="">{{ product.category.name }}</a>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <p class="mb-2">Brand:</p>
+                            <a href="">{{ product.brand.name }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <div class="bd"></div>
+                    <div class="oltre-riga">
+                        <div>Rating:{{ product.rating }} </div>
+                        <div>{{ product.available ? 'Disponibile' : 'Non disponibile'  }}</div>
+                        <div><i class="fa-regular fa-heart"></i></div>
                     </div>
                 </div>
             </div>
@@ -33,7 +44,7 @@ export default {
     data() {
         return {
             store,
-            contentMaxLen: 350,
+            contentMaxLen: 280,
         }
     },
     methods: {
@@ -51,9 +62,12 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/partials/variables' as *;
 
-.divisorio {
+.my-card {
     display: flex;
     color: $rich-green;
+    border-width: 1px;
+    border-color: rgba(230, 190, 190, 0.97);
+    border-style: solid;
 }
 
 .images {
@@ -89,7 +103,16 @@ export default {
 
 .description {
     width: 60vw;
-    height: 35vh;
+
+    .filter {
+        a {
+        transition: all .25s;
+        
+            &:hover {
+                color: $pink;
+            }
+        }        
+    }
 }
 
 .my-card-title {
@@ -108,7 +131,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
     padding: 20px 30px;
 
 }
@@ -121,7 +144,6 @@ export default {
     &::-webkit-scrollbar {
         display: none;
     }
-
     
     cursor: pointer;
     transition: all .25s;
@@ -129,13 +151,31 @@ export default {
     &:hover {
         color: $pink;
     }
-
 }
 
-.bordo {
-    border-width: 1px;
-    border-color: rgba(230, 190, 190, 0.97);
-    border-style: solid;
+@media screen and (max-width: 575.98px) {
+
+    .my-card-title {
+        font-size: 25px;
+    }
+
+    .images {
+        height: 26vh;
+    }
+
+    .my-card-body {
+        justify-content: center;
+        // align-items: center;
+    }
+    .my-card-text {
+        display: none;
+    }
+
+    .filter {
+        justify-content: space-between !important;
+        font-size: 12px;
+        gap: 15px;
+    }
 }
 
 .bd {
