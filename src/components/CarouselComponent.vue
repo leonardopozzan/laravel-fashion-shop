@@ -232,10 +232,10 @@ h2 {
   &__prev, &__next {
     position: absolute;
     top: 700px;
-    transition: transform 0.25s ease;
-    transform-origin: 0 0;
     
     i {
+        transition: transform 0.25s ease;
+    transform-origin: top;
       font-size: 45px;
       color: $rich-green;
       cursor: pointer;
@@ -244,8 +244,15 @@ h2 {
   }
   
   &__prev:hover, &__next:hover { 
-    transform: scale(1); 
-    transform: translate( 10px);
+    i{
+    transform: translateX( -10px);
+    }
+    
+  }
+  &__next:hover{
+    i{
+        transform: translateX( 10px);
+    }
   }  
   
   &__prev { left: 40%; }

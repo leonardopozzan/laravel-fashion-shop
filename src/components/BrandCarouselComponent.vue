@@ -37,7 +37,7 @@ export default {
 
             homePaths: [
                 {
-                    path: 'img/team-secret-logo.svg',
+                    path: '/img/team-secret-logo.svg',
                     alt: 'team-secret-logo',
 
                     info: 'makeup',

@@ -59,6 +59,9 @@
             </div>
         </div>
     </section>
+
+    <ChatComponent />
+    <ScrollTopComponent />
 </template>
 
 <script>
@@ -67,6 +70,8 @@ import axios from 'axios';
 import { store } from '../store';
 import CardComponent from '../components/CardComponent.vue';
 import HeroComponent from '../components/HeroComponent.vue';
+import ChatComponent from '../components/ChatComponent.vue';
+import ScrollTopComponent from '../components/ScrollTopComponent.vue';
 export default {
     name: 'ProductList',
     components: { CardComponent },
@@ -127,7 +132,7 @@ export default {
         this.getProducts(this.currentPage);
         this.getProperties();
     },
-    components: { CardComponent, HeroComponent }
+    components: { CardComponent, HeroComponent, ChatComponent, ScrollTopComponent }
 
 
 

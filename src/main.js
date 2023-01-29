@@ -4,4 +4,6 @@ import App from './App.vue'
 
 import './assets/main.scss'
 
-createApp(App).use(router).mount('#app')
+import BrandCarouselComponent from './components/BrandCarouselComponent.vue'
+
+createApp(App).component('BrandCarouselComponent',BrandCarouselComponent).use(router).mount('#app')
