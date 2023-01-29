@@ -1,6 +1,6 @@
 <template>
     <div class="cards-container">
-        <div class="col-4 single-card-container">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
                 <img src="img\open-uri20180708-4-4bvqii.jpg" alt="">
             </div>
@@ -9,7 +9,7 @@
             </div>
             <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
-        <div class="col-4 single-card-container">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
                 <img src="img\open-uri20180708-4-13okqci.jpg" alt="">
             </div>
@@ -18,7 +18,7 @@
             </div>
             <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
-        <div class="col-4 single-card-container">
+        <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
                 <img src="img\open-uri20180630-4-1bl3btv.jpg" alt="">
             </div>
@@ -28,11 +28,13 @@
             <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
     </div>
+    
 </template>
 
 <script>
+
 export default {
-    name: 'BeautyCard',
+    name: 'BeautyCardComponent',
 }
 </script>
 
@@ -42,9 +44,9 @@ export default {
 
 .cards-container {
     display: flex;
-    height: 70vh;
+    min-height: 70vh;
 
-    .single-card-container{
+    .single-card-container {
         background-color: $rich-green;
         display: flex;
         flex-direction: column;
@@ -74,7 +76,7 @@ export default {
                     transform: scale(1.1);
                 }
             }
-            
+
         }
 
         div h4 {
@@ -156,6 +158,12 @@ export default {
         }
 
     }
-}
 
+    @media screen and (max-width: 768px) {
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+        } ;
+    }
+}
 </style>
