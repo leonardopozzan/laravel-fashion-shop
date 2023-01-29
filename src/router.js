@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/HomePage.vue';
 import ProductList from './pages/ProductList.vue';
-import ContactPage from './pages/ContactPage.vue';
+import ContactsPage from './pages/ContactsPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -20,9 +20,9 @@ const router = createRouter({
 
 
         {
-            path: '/contact',
-            name: 'contact',
-            component: ContactPage,
+            path: '/contacts',
+            name: 'contacts',
+            component: ContactsPage,
         },
 
     ]
