@@ -4,28 +4,45 @@
             <!-- cards container  -->
             <div class="cards-container">
                 <!--  card -->
-                <div class="card single-card bg-team" v-for="(member, i) in team" :key="i">
-                    <!-- <div class="white-stripe">
-                        <span>{{}}</span>
-                    </div> -->
-                    <!--  img -->
-                    <div class="pt-4 pb-3 d-flex justify-content-center align-items-center">
-                        <img class="img-profile" :src="member.image" :alt="member.name">
-                    </div>
-                    <!-- body -->
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <!-- person -->
-                        <div class="profile-person">
-                            <span class="profile-name ">{{member.name}}</span>
-                            <span class="profile-qualification ">{{member.qualification}}</span>
-                            <p class="profile-description">{{member.description}}</p>
+                <div class="card single-card" v-for="(member, i) in team" :key="i">
+                    <!-- content -->
+                    <div class="card-content">
+                        <!-- front -->
+                        <div class="front">
+                            <!--  img -->
+                            <div class="pt-4 pb-3 d-flex justify-content-center align-items-center">
+                                <img class="img-profile" :src="member.image" :alt="member.name">
+                            </div>
+                            <!-- body -->
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <!-- person -->
+                                <div class="profile-person">
+                                    <span class="profile-name ">{{member.name}}</span>
+                                    <span class="profile-qualification ">{{member.qualification}}</span>
+                                </div>
+                                <!-- social -->
+                                <div class="profile-social">
+                                    <a href="#nogo"><i class="fa-brands fa-facebook"></i></a>
+                                    <a href="#nogo"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="#nogo"><i class="fa-brands fa-telegram"></i></a>
+                                    <a :href="member.github" target="blank"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                            </div>
                         </div>
-                        <!-- social -->
-                        <div class="profile-social">
-                            <a href="#nogo"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#nogo"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#nogo"><i class="fa-brands fa-telegram"></i></a>
-                            <a :href="member.github" target="blank"><i class="fa-brands fa-github"></i></a>
+
+                        <!-- back -->
+                        <div class="back d-flex flex-column justify-content-center align-items-center">
+                            <p class="profile-description">
+                            <span>About me:</span>
+                            {{member.description}}
+                            </p>
+                            <!-- social -->
+                            <div class="profile-social">
+                                <a href="#nogo"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="#nogo"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#nogo"><i class="fa-brands fa-telegram"></i></a>
+                                <a :href="member.github" target="blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>  
@@ -86,7 +103,11 @@
 
 .parallax {
     background-image: url('../img/pexels-ray-piedra-2721977.jpg');
+    height: 100%;
+
+    background-attachment: fixed;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 section {
@@ -97,99 +118,146 @@ section {
     flex-wrap: wrap;
     justify-content: center;
 
-        // .bg-team{
-        //     background-color: transparent;
-        //     backdrop-filter: blur(15px);
-        //     border-radius: 10px;
-        //     border-right: 1px solid rgba(255, 255, 255, 0.5);
-        //     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        // }            
-
         .single-card {
-            width: 80%;
+            width: 85%;
             margin: 25px auto;
+            background: transparent;
             color: $rich-green;
             cursor: pointer;
-            border: 1px solid $pink;
             border-radius: 0;
-            box-shadow: 8px 7px 6px $rich-green;
             transition: 0.3s;
-            overflow: hidden;
-            position: relative;
-
-
-            .white-stripe{
+            perspective: 1000px;
+            height: 500px;
+            border: none;
+            
+            &:hover .card-content {
+                transform: rotateY( 180deg ) ;
+                box-shadow: none;
+            }
+            
+            .card-content {
                 position: absolute;
-                top: 25px;
-                left: -60px;
-                height: 45px;
-                width: 220px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: bold;
-                background-color: white;
-                transform: rotate(-45deg);
-                box-shadow: 3px 3px 3px black;
-            }
-
-            .img-profile{
-                width: 55%;
+                width: 100%;
                 height: 100%;
-            }
+                transition: transform 1s;
+                transform-style: preserve-3d;
+                border: 2px solid $rich-green;
+                .front {
+                    padding: 25px 0px;
+                    box-shadow: 9px 8px 8px rgba(73, 73, 73, 0.76);
 
-            .card-body{
-                padding-bottom: 40px;
-                line-height: 1.8;
+                    .img-profile{
+                        width: 65%;
+                        height: 100%;
+                    }
 
-                .profile-person {
-                    text-align: center;
-                    
-                    .profile-name {
-                        display: block;
-                        font-size: $font-medium-large;
-                        font-weight: bold;
-                        letter-spacing: 0.8px;
-                        text-transform: uppercase;
-                    }
-                    .profile-qualification {
-                        display: block;
-                        font-size: $font-medium;
-                        font-weight: bold;
-                        color: $pink;
-                        letter-spacing: 0.8px;
-                    }
-                    .profile-description{
-                    padding: 15px 30px;
-                    font-size: $font-small;
+                    .card-body{
+                        padding-bottom: 40px;
+                        line-height: 1.8;
+
+                        .profile-person {
+                            text-align: center;
+                            
+                            .profile-name {
+                                display: block;
+                                font-size: $font-medium-large;
+                                font-weight: bold;
+                                letter-spacing: 0.8px;
+                                text-transform: uppercase;
+                            }
+                            .profile-qualification {
+                                display: block;
+                                font-size: $font-medium;
+                                font-weight: bold;
+                                color: $pink;
+                                letter-spacing: 0.8px;
+                            }
+                            .profile-description{
+                            padding: 15px 30px;
+                            font-size: $font-small;
+                            }
+                        }
+
+                        .profile-social{
+                            font-size: 22px;
+                            padding-top: 25px;
+
+                            a {
+                                i {
+                                    color: $rich-green;
+                                    margin-right: 10px;
+                                    transition: all 0.5s;
+
+                                    &:hover{
+                                        color: $pink;
+                                        scale: 1.2;
+                                    } 
+                                } 
+                            }
+                        }
                     }
                 }
+
+                .front,
+                .back {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background: white;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
 
                 .profile-social{
-                    font-size: 22px;
+                            font-size: 22px;
+                            padding-top: 25px;
 
-                    a {
-                        i {
-                            color: $rich-green;
-                            margin-right: 10px;
-                            transition: all 0.5s;
+                            a {
+                                i {
+                                    color: $rich-green;
+                                    margin-right: 10px;
+                                    transition: all 0.5s;
 
-                            &:hover{
-                                color: $pink;
-                                scale: 1.2;
-                            } 
-                        } 
+                                    &:hover{
+                                        color: $pink;
+                                        scale: 1.2;
+                                    } 
+                                } 
+                            }
+                        }
+                }
+
+                .back {
+                    padding: 25px 30px;
+                    background: white;
+                    color: $rich-green;
+                    text-align: center;
+                    transform: rotateY( 180deg );
+                    box-shadow: 9px 8px 8px rgba(73, 73, 73, 0.76);
+
+
+                    span {
+                        font-size: $font-medium-large;
+                        font-weight: bold;
+                        display: block;
+                        padding-bottom: 15px;
                     }
                 }
             }
-
-            &:hover {
-                box-shadow: blue;
-            }
+            
         }
     }
 }
 
+@media screen and (min-width:768px) {
+    section {
+        .cards-container {
+                .single-card{
+                width: 70%;
+                margin: 35px auto;
+            }
+        }
+    }  
+}
 
 @media screen and (min-width:992px) {
     section {
