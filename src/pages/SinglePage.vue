@@ -2,43 +2,52 @@
     <HeroComponent :isVisible="false"></HeroComponent>
     <section class="container py-4">
         <router-link :to="{ name: 'products'}"><h4 class="backwards"><i class="fa-solid fa-circle-arrow-left fs-6"></i> Prodotti</h4></router-link>
-        <div v-if="product" class=" d-flex justify-content-center mt-5">
+        <div v-if="products" class=" d-flex justify-content-center mt-5">
             <div class="single-card row">
                 <div class="img-box col-lg-6 col-md-6 col-sm-12">
                     <div class="d-flex">
-                        <img v-if="product.image" :src="`${store.imagePath}${product.image}`" class="card-img-top single-img" alt="...">
+                        <img v-if="products.image" :src="`${store.imagePath}${products.image}`" class="card-img-top single-img" alt="...">
                         <img v-else src="https://picsum.photos/1200/600?random=1" class="card-img-top single-img">
                     </div>
-                    <div class="price">{{ product.price }}&euro;</div>
+                    <div class="price">{{ products.price }}&euro;</div>
                 </div>
                 <div class="single-info d-flex flex-column justify-content-around col-lg-6 col-md-6 col-sm-12">
                     <div class="first-info">
-                        <h1 class="text-capitalize mb-4 title">{{ product.name }}</h1>
+                        <h1 class="text-capitalize mb-4 title">{{ products.name }}</h1>
                         <div class="description mb-4">
-                            <p v-if="product.description" class="m-0">{{ product.description }}</p>
+                            <p v-if="products.description" class="m-0">{{ products.description }}</p>
                         </div>
                     </div>
                     <div class="second-info">
                         <div class="d-flex justify-content-around text-capitalize mb-4">
                             <div class="d-flex flex-column">
-                                <div class="mb-2">Tipo:</div>
-                                {{ product.type.name }}
+                                <div class="mb-2 fw-bold">Tipo:</div>
+                                {{ products.type.name }}
                             </div>
                             <div class="d-flex flex-column">
-                                <div class="mb-2">Categoria:</div>
-                                {{ product.category.name }}
+                                <div class="mb-2 fw-bold">Categoria:</div>
+                                {{ products.category.name }}
                             </div>
                             <div class="d-flex flex-column">
-                                <div class="mb-2">Brand:</div>
-                                {{ product.brand.name }}
+                                <div class="mb-2 fw-bold">Brand:</div>
+                                {{ products.brand.name }}
+                            </div>
+                        </div>
+                        <div class="bd"></div>
+                        <div class="my-4">
+                            <div class="d-flex justify-content-around">
+                                <div class="fw-bold">Rating:{{ products.rating }} </div>
+                                <div class="fw-bold">{{ products.available ? 'Disponibile' : 'Non disponibile' }}</div>
+                                <div><i class="fa-regular fa-heart"></i></div>
                             </div>
                         </div>
                         <div class="bd"></div>
                         <div class="mt-4">
-                            <div class="d-flex justify-content-around">
-                                <div>Rating:{{ product.rating }} </div>
-                                <div>{{ product.available ? 'Disponibile' : 'Non disponibile' }}</div>
-                                <div><i class="fa-regular fa-heart"></i></div>
+                            <div class="d-flex flex-column">
+                                <div class="fw-bold mb-2">Tags:</div>
+                                <div class="row" v-if="products.tags && products.tags.length > 0">
+                                    <div v-for="(tag, index) in products.tags" class="col-lg-4 col-md-4 col-sm-4 col-4" :key="index">{{ tag.name }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +70,8 @@ import HeroComponent from '../components/HeroComponent.vue';
         data() {
             return {
                 store,
-                product: null
+                products: null,
+                tags: []
             }
         },
 
@@ -69,21 +79,17 @@ import HeroComponent from '../components/HeroComponent.vue';
             getProduct() {
                 axios.get(`${this.store.apiUrl}/products/${this.$route.params.slug}`).then((response) => {
                     if (response.data.success) {
-                        this.product = response.data.results;
+                        this.products = response.data.results;
+                        this.tags = response.data.tags;
                     } else {
                         this.$router.push({ name: 'not-found' });
                     }
                 });
             },
-            truncateContent(text) {
-                if (text.length > this.contentMaxLen) {
-                    return text.substr(0, this.contentMaxLen) + "...";
-                }
-                return text;
-            }
         },
         mounted() {
             this.getProduct();
+
         }
 
     }
@@ -170,6 +176,7 @@ import HeroComponent from '../components/HeroComponent.vue';
     
             &:hover {
                 color: red;
+                transform: scale(1.4);
             }
     
             cursor: pointer;

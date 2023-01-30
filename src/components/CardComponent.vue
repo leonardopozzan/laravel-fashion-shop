@@ -1,7 +1,10 @@
 <template>
     <div class="my-card">
         <div class="images">
-            <router-link :to="{ name: 'single-page', params: { slug: product.slug } }"><img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="..."></router-link>
+            <img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="...">
+            <div class="overlay">
+                <router-link :to="{ name: 'single-page', params: { slug: product.slug } }"><div class="more">See More</div></router-link>
+            </div>
             <div class="price">{{ product.price }}&euro;</div>
         </div>
         <div class="description">
@@ -72,14 +75,49 @@ export default {
 
 .images {
     width: 40vw;
-    height: 35vh;
+    height: 40vh;
     object-fit: cover;
     position: relative;
+    overflow: hidden;
     cursor: pointer;
+    transition: all .80s;
+
+    .overlay {
+        transition: .80s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        margin-right: auto;
+        text-align: center;
+    }
+
+    &:hover img {
+        opacity: 0.3;
+    }
+
+    &:hover .overlay {
+        opacity: 1;
+    }
+
+    .more {
+        padding: 16px 32px;
+        background-color: $pink;
+        transition: .80s ease;
+
+        &:hover {
+            color: $pink;
+            background-color: $rich-green;
+            transform: scale(1.1);
+        }
+    }
 
     img {
         width: 100%;
         height: 100%;
+        transition: all .80s;
     }
 
     .price {
@@ -91,7 +129,7 @@ export default {
         // cursor: pointer;
         transform-origin: 0 0;
         // transition: transform .55s, visibility .55s ease-in;
-        transition: all .55s;
+        transition: all .80s;
 
         &:hover {
             background-color: $rich-green;
@@ -106,7 +144,7 @@ export default {
 
     .filter {
         a {
-        transition: all .25s;
+            transition: all .55s;
         
             &:hover {
                 color: $pink;
@@ -119,7 +157,7 @@ export default {
     font: normal normal normal 32px/35px "libre baskerville", serif;
     cursor: pointer;
     // margin-top: 40px;
-    transition: all .25s;
+    transition: all .55s;
 
     &:hover {
         color: $pink;
@@ -146,7 +184,7 @@ export default {
     }
     
     cursor: pointer;
-    transition: all .25s;
+    transition: all .55s;
 
     &:hover {
         color: $pink;
@@ -198,9 +236,11 @@ export default {
 
 i {
     color: $pink;
+    transition: all .25s;
 
     &:hover {
         color: red;
+        transform: scale(1.4);
     }
 
     cursor: pointer;
