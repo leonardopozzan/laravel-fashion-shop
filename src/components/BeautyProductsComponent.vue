@@ -1,8 +1,8 @@
 <template>
     <div class="parallax">
-        <div class="beauty-container d-flex align-items-center justify-content-end">
-            <div class="description d-flex align-items-center justify-content-end">
-                <p><span>BEAUTY</span><span>PRODUCTS</span></p>
+        <div class="beauty-container">
+            <div class="description">
+                <span>BEAUTY</span><span>PRODUCTS</span>
             </div>
         </div>
     </div>
@@ -42,42 +42,79 @@ export default {
     background-size: cover;
 
 }
+
 .beauty-container {
+    width: 100%;
     margin-top: 200px;
     padding: 200px 30px;
 
-    .image {
-        width: 400px;
-        height: 600px;
-        border-radius: 20px;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
 
     .description {
-        height: 100%;
-        width: 75vw;
+        position: relative;
+        transform: translateX(10%);
+        max-width: 900px;
         font-size: $font-extra-large;
         font-weight: $font-w-bold;
+        color: $white;
 
-        p {
-            color: $white;
+        span {
+            width: 100%;
+            display: block;
 
-            span {
-                display: block;
-
-                &:nth-child(2) {
-                    padding-left: 250px;
-                }
-
+            &:nth-child(2) {
+                text-align: end;
             }
 
         }
+
+
+    }
+
+}
+
+
+@media (max-width: 1200px) {
+    .description {
+        transform: translateX(0) !important;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+
+    .parallax {
+        background-position: left center;
+    }
+
+
+    .beauty-container {
+
+        padding-left: 0;
+
+        .description {
+            width: 35vw !important;
+            font-size: $font-medium-large !important;
+        }
+
+
+    }
+
+}
+
+
+@media (max-width: 522px) {
+
+    .beauty-container {
+        padding-left: 0;
+
+        .description {
+            font-size: 52px !important;
+            padding: 20px;
+        }
+
+
     }
 
 }

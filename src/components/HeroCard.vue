@@ -16,8 +16,13 @@ export default {
 @use '../assets/partials/variables' as *;
 
 .hero-card {
+    margin-top: 20px;
+    aspect-ratio: 16/9;
     width: 100%;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     .overlay {
         position: absolute;
@@ -29,11 +34,6 @@ export default {
         opacity: 0;
     }
 
-    img {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-    }
 
     button {
         position: absolute;
@@ -50,6 +50,20 @@ export default {
             background-color: $rich-green;
             color: $pink;
         }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .hero-card {
+        min-width: 438px;
+    }
+}
+
+
+@media (max-width: 522px) {
+    .hero-card {
+        min-width: 300px;
     }
 }
 </style>
