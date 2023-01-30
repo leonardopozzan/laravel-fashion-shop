@@ -265,6 +265,7 @@ export default {
         font-size: 12px;
         gap: 15px;
     }
+
     .images {
         .price {
             font: normal normal normal 14px/35px "libre baskerville", serif;
@@ -280,6 +281,17 @@ export default {
             &:hover {
                 background-color: $rich-green;
                 color: $pink;
+                transform: scale(1.1);
+            }
+        }
+        .more {
+            padding: 8px 16px;
+            background-color: $pink;
+            transition: .80s ease;
+
+            &:hover {
+                color: $pink;
+                background-color: $rich-green;
                 transform: scale(1.1);
             }
         }
