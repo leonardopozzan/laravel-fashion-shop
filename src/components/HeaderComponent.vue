@@ -367,7 +367,8 @@ export default {
             axios.post(`${this.store.apiUrl}/purchase`, cart, {headers: { "Content-Type": "multipart/form-data" }}).then((response) => {
                 // console.log(response.data.success);
                 this.orderDone = response.data.success;
-                setTimeout(this.deleteNotify, 3000);
+                setTimeout(this.deleteNotify, 1500);
+                setTimeout(this.clearStorage, 3000);
             });
         }
     },
@@ -691,16 +692,13 @@ export default {
                     }
                 }
             }
-
-        }
-        
-        .my-dropdown-title{
+            .my-dropdown-title{
             
             position: relative;
             .my-dropdown-menu{
                 display: flex;
                 width: 430px;
-                top: 48.5px;
+                top: 46.5px;
                 left: 0;
                 height: max-content;
                 overflow: initial;
@@ -711,6 +709,10 @@ export default {
                 }
             }
         }
+
+        }
+        
+        
     }
 }
 </style>
