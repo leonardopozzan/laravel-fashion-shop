@@ -81,7 +81,28 @@
                     <div class="icon"><i class="fa-brands fa-facebook-f"></i></div>
                     <div class="icon"><i class="fa-brands fa-pinterest-p"></i></div>
                     <div class="icon"><i class="fa-brands fa-twitter"></i></div>
-                    <div class="icon"><i class="fa-brands fa-youtube"></i></div>
+                    <div class="icon" @click="showCart()">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="circle" v-if="myCart && myCart.length"></div>
+                    </div>
+                    <Transition>
+                        <div class="cart" v-if="cart" @mouseleave="cart = false">
+                            <div v-for="(item, i) in myCart" :key="i" class="d-flex align-items-center justify-content-between">
+                                <div>{{ item.name }}</div>
+                                <div class="d-flex align-items-center fs-5">
+                                    <div class="me-2"><button @click="removeQuantity(item.slug,i)">-</button></div>
+                                    <div class="me-2">{{ item.quantity }}</div>
+                                    <div class="me-2"><button @click="addQuantity(item.slug,i)">+</button></div>
+                                    <div class="me-2"><button @click="deleteItem(item.slug,i)">x</button></div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="border border-2 me-3" @click="clearStorage()">Delete All</button>
+                                <button class="border border-2" @click="purchase()">Purchase</button>
+                                <div class="alert alert-success mt-3" v-if="orderDone">Il tuo ordine è stato inviato</div>
+                            </div>
+                        </div>
+                    </Transition>
                 </div>
             </div>
             <!-- <div class="social">
@@ -103,6 +124,8 @@
 <script>
 
 import { store } from '../store';
+import axios from 'axios';
+
 
 export default {
     name: 'HeaderComponent',
@@ -110,11 +133,15 @@ export default {
 
     data() {
         return {
+            store,
             sale: false,
             makeUp: false,
             skinCare: false,
-            sidebar: false,
-            saleLinks: [
+            sidebar : false,
+            cart : false,
+            myCart : null,
+            orderDone : false,
+            saleLinks : [
                 {
                     title: 'Shop by Category',
                     links: [
@@ -242,8 +269,28 @@ export default {
             ]
         }
     },
-    methods: {
-        showMakeUp() {
+    computed:{
+        // myCart(){
+        //     let values = [],
+        //     keys = Object.keys(localStorage),
+        //     i = keys.length;
+        //     while ( i-- ) {
+        //         values.push( JSON.parse(localStorage.getItem(keys[i])) );
+        //     }
+        //     console.log(values)
+        //     return values;
+        // }
+    },
+    watch: {
+    'store.cart': {
+      handler(newValue, oldValue) {
+        this.createCart();
+      },
+      deep: true
+    }
+  },
+    methods:{
+        showMakeUp(){
             this.makeUp = !this.makeUp;
             this.sale = false
             this.skinCare = false
@@ -262,9 +309,70 @@ export default {
         },
         hideSidebar() {
             this.sidebar = false
+        },
+        showCart(){
+            this.cart = !this.cart;
+        },
+        createCart(){
+            let values = [],
+            keys = Object.keys(localStorage),
+            i = keys.length;
+            while ( i-- ) {
+                values.push( JSON.parse(localStorage.getItem(keys[i])) );
+            }
+            // console.log(values)
+            this.myCart = values;
+        },
+        addQuantity(key,index){
+            let item = JSON.parse(localStorage.getItem(key));
+            item.quantity++;
+            localStorage.setItem(item.slug, JSON.stringify(item));
+            this.myCart[index].quantity++;
+        },
+        removeQuantity(key,index){
+            let item = JSON.parse(localStorage.getItem(key));
+            item.quantity--;
+            if(item.quantity < 0){
+                item.quantity = 0;
+            }
+            localStorage.setItem(item.slug, JSON.stringify(item));
+            this.myCart[index].quantity = item.quantity;
+        },
+        deleteItem(key,index){
+            window.localStorage.removeItem(key);
+            this.myCart.splice(index,1);
+            store.cart = [...Object.keys(window.localStorage)];
+        },
+        clearStorage(){
+            window.localStorage.clear();
+            this.myCart = [];
+            store.cart = [...Object.keys(window.localStorage)];
+        },
+        deleteNotify(){
+            this.orderDone = false;
+        },
+        purchase(){
+            const cart = {
+                email: 'guest@gmail.com',
+                address : 'via roma 21, Roma, 0000',
+                items : []
+            };
+            for(let i = 0; i<this.myCart.length; i++){
+                const item = {
+                    id: this.myCart[i].id,
+                    quantity: this.myCart[i].quantity
+                }
+                cart.items.push(item);
+            }
+            axios.post(`${this.store.apiUrl}/purchase`, cart, {headers: { "Content-Type": "multipart/form-data" }}).then((response) => {
+                // console.log(response.data.success);
+                this.orderDone = response.data.success;
+                setTimeout(this.deleteNotify, 3000);
+            });
         }
     },
-    mounted() {
+    mounted(){
+        this.createCart();
         window.addEventListener('scroll', () => {
             let scrollPos = window.scrollY
             if (scrollPos >= 10) {
@@ -334,28 +442,49 @@ export default {
 
     .socials-icon {
         display: flex;
-
-        .icon {
+        .cart{
+            position: absolute;
+            top: 0;
+            left: 139px;
+            background-color: $white;
+            width: 300px;
+            height: 100vh;
+            overflow: auto;
+            &::-webkit-scrollbar {
+                display: none;
+                }
+        }
+        .icon{
             padding: 0.5rem 1rem;
+            cursor: pointer;
+            position: relative;
+            .circle{
+                width: 15px;
+                height: 15px;
+                background-color: yellow;
+                border-radius: 50%;
+                overflow: hidden;
+                position: absolute;
+                top: 15px;
+                right: 8px;
+            }
 
-            &:hover {
-                color: $pink;
-                background-color: $white;
+            &:hover{
+                    color: $pink;
+                    background-color: $white;
+                }
+        }
+            i {
+                font-weight: $font-w-medium;
+                font-size: $font-medium-plus;
+                
             }
         }
 
-        i {
-            font-weight: $font-w-medium;
-            font-size: $font-medium-plus;
-            cursor: pointer;
-
-        }
-    }
-
-    .img-box {
-        width: 60px;
-    }
-
+        .img-box{
+                width: 60px;
+            }
+            
     .nav-menu {
 
         ul {
@@ -505,24 +634,42 @@ export default {
     }
 
     .my-navbar {
-        .socials-icon {
-            .icon {
-                color: $pink;
-                padding: 1.5rem 1rem;
+        &.my-sidebar{
+        height: max-content;
+        background-color: initial;
+        width: 100%;
+    }
+    .socials-icon {
+        position: relative;
 
-                &:hover {
+        .cart{
+            padding: 1rem;
+            top: 73px;
+            left: -47.5px;
+            background-color: $white;
+            width: 300px;
+            height: max-content;
+            max-height: 400px;
+            overflow: auto;
+            border: 1px solid black;
+            border-top: 0;
+            &::-webkit-scrollbar {
+                display: none;
+                }
+        }
+        .icon{
+
+            color: $pink;
+            padding: 1.5rem 1rem;
+            &:hover{
                     color: $rich-green;
                     background-color: $white;
                 }
             }
         }
 
-        .nav-menu {
-            &.my-sidebar {
-                height: max-content;
-                background-color: initial;
-                width: 100%;
-            }
+    .nav-menu {
+      
 
             ul {
 
@@ -545,23 +692,22 @@ export default {
                 }
             }
 
-            .my-dropdown-title {
+        }
+        
+        .my-dropdown-title{
+            
+            position: relative;
+            .my-dropdown-menu{
+                display: flex;
+                width: 430px;
+                top: 48.5px;
+                left: 0;
+                height: max-content;
+                overflow: initial;
+                &.width-large{
+                width: 750px;
+                left: -150px;
 
-                position: relative;
-
-                .my-dropdown-menu {
-                    display: flex;
-                    width: 430px;
-                    top: 48.5px;
-                    left: 0;
-                    width: 430px;
-                    height: max-content;
-                    overflow: initial;
-
-                    &.width-large {
-                        width: 750px;
-                        left: -150px;
-                    }
                 }
             }
         }

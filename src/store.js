@@ -82,5 +82,7 @@ export const store = reactive({
 
     ],
 
+    cart : []
+
 
 });
