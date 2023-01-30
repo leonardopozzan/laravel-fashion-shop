@@ -1,5 +1,4 @@
 <template>
-
     <div class="container-sm d-flex justify-content-center" id="primary-container">
 
         <div class="contact-form">
@@ -7,24 +6,32 @@
             <div class="contact-us">
                 <h1 class="text-uppercase m-0">Contact us</h1>
             </div>
-
-            <form>
+            <div v-if="success" class="alert alert-success text-start" role="alert">
+            Messaggio inviato con successo!
+            </div>
+            <form @submit.prevent="sendForm()">
                 <!-- Name input -->
                 <div class="mb-5">
-                    <input type="text" id="form4Example1" class="input-style" placeholder="Name" name="" />
-                    <!-- <label class="form-label" for="form4Example1">Name</label> -->
+                    <input required type="text" id="form4Example1" class="input-style form-control" placeholder="Name" name="name" :class="{'is-invalid': errors.name}" v-model="name"/>
+                    <p v-for="(error,index) in errors.name" :key="index" class="invalid-feedback">
+                    {{ error }}
+                    </p>
                 </div>
 
                 <!-- Email input -->
                 <div class="mb-5">
-                    <input type="email" id="form4Example2" class="input-style" placeholder="Email" name="" />
-                    <!-- <label class="form-label" for="form4Example2">Email address</label> -->
+                    <input required type="email" id="form4Example2" class="input-style form-control" placeholder="Email" name="email" :class="{'is-invalid': errors.email}" v-model="email"/>
+                    <p v-for="(error,index) in errors.email" :key="index" class="invalid-feedback">
+                    {{ error }}
+                    </p>
                 </div>
 
                 <!-- Message input -->
                 <div class="mb-5">
-                    <textarea class="input-style" id="form4Example3" rows="4" placeholder="Message" name=""></textarea>
-                    <!-- <label class="form-label" for="form4Example3">Message</label> -->
+                    <textarea required class="input-style form-control" id="form4Example3" rows="4" placeholder="Message" name="message" :class="{'is-invalid': errors.message}" v-model="message"></textarea>
+                    <p v-for="(error,index) in errors.message" :key="index" class="invalid-feedback">
+                    {{ error }}
+                    </p>
                 </div>
 
 
@@ -37,7 +44,7 @@
                             Send me a copy of this message
                         </label>
                     </div>
-                    <button type="submit">View more</button>
+                    <button type="submit" :disabled="loading">{{loading ? 'Sending...' : 'Invia'}}</button>
                 </div>
             </form>
 
@@ -70,8 +77,44 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {store} from '../store';
+
 export default {
     name: 'ContactComponent',
+    data(){
+            return {
+                store,
+                name: '',
+                email: '',
+                message: '',
+                success: false,
+                errors: {},
+                loading: false
+            }
+        },
+        methods: {
+            sendForm(){
+            this.loading = true;
+                const data = {
+                    name: this.name,
+                    email: this.email,
+                    message: this.message
+                }
+                axios.post(`${this.store.apiUrl}/contacts`, data).then((response)=>{
+                    console.log(response.data);
+                    this.success = response.data.success;
+                    if(!this.success){
+                        this.errors = response.data.errors;
+                    }else{
+                        this.name = '',
+                        this.email = '';
+                        this.message = '';
+                    }
+                    this.loading = false;
+                })
+            }
+        }
 }
 </script>
 
