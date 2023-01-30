@@ -48,21 +48,17 @@ export default {
     margin-top: 200px;
     padding: 200px 30px;
 
-
     .description {
-        position: relative;
-        transform: translateX(10%);
-        max-width: 900px;
         font-size: $font-extra-large;
         font-weight: $font-w-bold;
         color: $white;
 
         span {
-            width: 100%;
             display: block;
+            text-align: end;
 
-            &:nth-child(2) {
-                text-align: end;
+            &:nth-child(1) {
+                margin-right: 360px;
             }
 
         }
@@ -91,7 +87,7 @@ export default {
 
     .beauty-container {
 
-        padding-left: 0;
+        padding-left: 20px;
 
         .description {
             width: 35vw !important;
@@ -108,10 +104,12 @@ export default {
 
     .beauty-container {
         padding-left: 0;
+        display: none;
 
         .description {
             font-size: 52px !important;
             padding: 20px;
+            display: none;
         }
 
 
