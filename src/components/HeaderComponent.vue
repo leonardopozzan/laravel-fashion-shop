@@ -73,7 +73,26 @@
                     <div class="icon"><i class="fa-brands fa-facebook-f"></i></div>
                     <div class="icon"><i class="fa-brands fa-pinterest-p"></i></div>
                     <div class="icon"><i class="fa-brands fa-twitter"></i></div>
-                    <div class="icon"><i class="fa-brands fa-youtube"></i></div>
+                    <div class="icon" @click="showCart()">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <Transition>
+                        <div class="cart" v-if="cart" @mouseleave="cart = false">
+                            <div v-for="(item, i) in myCart" :key="i" class="d-flex align-items-center justify-content-between">
+                                <div>{{ item.name }}</div>
+                                <div class="d-flex align-items-center fs-5">
+                                    <div class="me-2"><button @click="removeQuantity(item.slug,i)">-</button></div>
+                                    <div class="me-2">{{ item.quantity }}</div>
+                                    <div class="me-2"><button @click="addQuantity(item.slug,i)">+</button></div>
+                                    <div class="me-2"><button @click="deleteItem(item.slug,i)">x</button></div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="border border-2 me-3" @click="clearStorage()">Delete All</button>
+                                <button class="border border-2">Purchase</button>
+                            </div>
+                        </div>
+                    </Transition>
                 </div>
             </div>
             <!-- <div class="social">
@@ -101,10 +120,13 @@ export default {
 
     data() {
         return {
+            store,
             sale: false,
             makeUp: false,
             skinCare: false,
             sidebar : false,
+            cart : false,
+            myCart : null,
             saleLinks : [
                 {
                     title : 'Shop by Category',
@@ -233,6 +255,26 @@ export default {
             ]
         }
     },
+    computed:{
+        // myCart(){
+        //     let values = [],
+        //     keys = Object.keys(localStorage),
+        //     i = keys.length;
+        //     while ( i-- ) {
+        //         values.push( JSON.parse(localStorage.getItem(keys[i])) );
+        //     }
+        //     console.log(values)
+        //     return values;
+        // }
+    },
+    watch: {
+    'store.cart': {
+      handler(newValue, oldValue) {
+        this.createCart();
+      },
+      deep: true
+    }
+  },
     methods:{
         showMakeUp(){
             this.makeUp = !this.makeUp;
@@ -253,9 +295,48 @@ export default {
         },
         hideSidebar(){
             this.sidebar = false
+        },
+        showCart(){
+            this.cart = !this.cart;
+        },
+        createCart(){
+            let values = [],
+            keys = Object.keys(localStorage),
+            i = keys.length;
+            while ( i-- ) {
+                values.push( JSON.parse(localStorage.getItem(keys[i])) );
+            }
+            console.log(values)
+            this.myCart = values;
+        },
+        addQuantity(key,index){
+            let item = JSON.parse(localStorage.getItem(key));
+            item.quantity++;
+            localStorage.setItem(item.slug, JSON.stringify(item));
+            this.myCart[index].quantity++;
+        },
+        removeQuantity(key,index){
+            let item = JSON.parse(localStorage.getItem(key));
+            item.quantity--;
+            if(item.quantity < 0){
+                item.quantity = 0;
+            }
+            localStorage.setItem(item.slug, JSON.stringify(item));
+            this.myCart[index].quantity = item.quantity;
+        },
+        deleteItem(key,index){
+            window.localStorage.removeItem(key);
+            this.myCart.splice(index,1);
+            store.cart = [...Object.keys(window.localStorage)];
+        },
+        clearStorage(){
+            window.localStorage.clear();
+            this.myCart = [];
+            store.cart = [...Object.keys(window.localStorage)];
         }
     },
     mounted(){
+        this.createCart();
         window.addEventListener('scroll', () => {
             let scrollPos = window.scrollY
             if(scrollPos >= 10){
@@ -318,8 +399,22 @@ export default {
     }
     .socials-icon {
         display: flex;
+        .cart{
+            position: absolute;
+            top: 0;
+            left: 139px;
+            background-color: $white;
+            width: 300px;
+            height: 100vh;
+            overflow: auto;
+            &::-webkit-scrollbar {
+                display: none;
+                }
+        }
         .icon{
             padding: 0.5rem 1rem;
+            cursor: pointer;
+
             &:hover{
                     color: $pink;
                     background-color: $white;
@@ -328,7 +423,6 @@ export default {
             i {
                 font-weight: $font-w-medium;
                 font-size: $font-medium-plus;
-                cursor: pointer;
                 
             }
         }
@@ -336,6 +430,7 @@ export default {
         .img-box{
                 width: 60px;
             }
+            
     .nav-menu {
 
         ul {
@@ -473,8 +568,29 @@ export default {
         transform: rotate(-180deg);
     }
     .my-navbar {
+        &.my-sidebar{
+        height: max-content;
+        background-color: initial;
+        width: 100%;
+    }
     .socials-icon {
+        position: relative;
+
+        .cart{
+            padding: 1rem;
+            top: 73px;
+            left: -48.5px;
+            background-color: $white;
+            width: 300px;
+            height: 400px;
+            overflow: auto;
+            border: 1px solid black;
+            &::-webkit-scrollbar {
+                display: none;
+                }
+        }
         .icon{
+
             color: $pink;
             padding: 1.5rem 1rem;
             &:hover{
@@ -485,11 +601,7 @@ export default {
         }
 
     .nav-menu {
-        &.my-sidebar{
-        height: max-content;
-        background-color: initial;
-        width: 100%;
-    }
+      
 
         ul {
             
@@ -518,7 +630,6 @@ export default {
                 width: 430px;
                 top: 48.5px;
                 left: 0;
-                width: 430px;
                 height: max-content;
                 overflow: initial;
                 &.width-large{

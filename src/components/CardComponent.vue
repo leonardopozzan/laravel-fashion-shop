@@ -3,6 +3,7 @@
         <div class="images">
             <img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="...">
             <div class="price">{{ product.price }}&euro;</div>
+            <div class="cart" @click="addToCart(product)" ><button><i class="fa-solid fa-cart-shopping" :class="{'color-red' : myStorage.includes(product.slug)}"></i></button></div>
         </div>
         <div class="description">
             <div class="my-card-body">
@@ -45,14 +46,38 @@ export default {
         return {
             store,
             contentMaxLen: 280,
+            myStorage : Object.keys(window.localStorage)
         }
     },
+    // computed:{
+    //     myStorage(){
+    //         return Object.keys(window.localStorage);
+    //     }
+    // },
+    watch: {
+    'store.cart': {
+      handler(newValue, oldValue) {
+        this.updateCart();
+      },
+      deep: true
+    }
+  },
     methods: {
         truncateContent(text) {
             if (text.length > this.contentMaxLen) {
                 return text.substr(0, this.contentMaxLen) + "...";
             }
             return text;
+        },
+        addToCart(obj){
+            obj['quantity'] = 1;
+            this.myStorage.push(obj.slug);
+            window.localStorage.setItem(obj.slug, JSON.stringify(obj));
+            store.cart = [...this.myStorage];
+            console.log(localStorage);
+        },
+        updateCart(){
+            this.myStorage = Object.keys(window.localStorage);
         }
     },
     props: ['product'],
@@ -61,6 +86,9 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/partials/variables' as *;
+.color-red{
+    color: red !important;
+}
 
 .my-card {
     display: flex;
@@ -98,6 +126,28 @@ export default {
             transform: scale(1.2);
         }
 
+    }
+    .cart{
+        position: absolute;
+        top: 70px;
+        left: 0px;
+        background-color: $pink;
+        padding: 5px 7px;
+        // border-radius: 5px;
+        cursor: pointer;
+        transform-origin: 0 0;
+        transition: transform .25s, visibility .25s ease-in;
+        button{
+            i{
+            color: $rich-green;
+
+            }
+            background-color: $pink;
+            border: 0;
+        }
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 }
 
