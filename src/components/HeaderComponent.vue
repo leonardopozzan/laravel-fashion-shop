@@ -75,6 +75,7 @@
                     <div class="icon"><i class="fa-brands fa-twitter"></i></div>
                     <div class="icon" @click="showCart()">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="circle" v-if="myCart && myCart.length"></div>
                     </div>
                     <Transition>
                         <div class="cart" v-if="cart" @mouseleave="cart = false">
@@ -89,7 +90,8 @@
                             </div>
                             <div class="text-center mt-4">
                                 <button class="border border-2 me-3" @click="clearStorage()">Delete All</button>
-                                <button class="border border-2">Purchase</button>
+                                <button class="border border-2" @click="purchase()">Purchase</button>
+                                <div class="alert alert-success mt-3" v-if="orderDone">Il tuo ordine è stato inviato</div>
                             </div>
                         </div>
                     </Transition>
@@ -113,6 +115,8 @@
 <script>
 
 import { store } from '../store';
+import axios from 'axios';
+
 
 export default {
     name: 'HeaderComponent',
@@ -127,6 +131,7 @@ export default {
             sidebar : false,
             cart : false,
             myCart : null,
+            orderDone : false,
             saleLinks : [
                 {
                     title : 'Shop by Category',
@@ -306,7 +311,7 @@ export default {
             while ( i-- ) {
                 values.push( JSON.parse(localStorage.getItem(keys[i])) );
             }
-            console.log(values)
+            // console.log(values)
             this.myCart = values;
         },
         addQuantity(key,index){
@@ -333,6 +338,28 @@ export default {
             window.localStorage.clear();
             this.myCart = [];
             store.cart = [...Object.keys(window.localStorage)];
+        },
+        deleteNotify(){
+            this.orderDone = false;
+        },
+        purchase(){
+            const cart = {
+                email: 'guest@gmail.com',
+                address : 'via roma 21, Roma, 0000',
+                items : []
+            };
+            for(let i = 0; i<this.myCart.length; i++){
+                const item = {
+                    id: this.myCart[i].id,
+                    quantity: this.myCart[i].quantity
+                }
+                cart.items.push(item);
+            }
+            axios.post(`${this.store.apiUrl}/purchase`, cart, {headers: { "Content-Type": "multipart/form-data" }}).then((response) => {
+                // console.log(response.data.success);
+                this.orderDone = response.data.success;
+                setTimeout(this.deleteNotify, 3000);
+            });
         }
     },
     mounted(){
@@ -414,6 +441,17 @@ export default {
         .icon{
             padding: 0.5rem 1rem;
             cursor: pointer;
+            position: relative;
+            .circle{
+                width: 15px;
+                height: 15px;
+                background-color: yellow;
+                border-radius: 50%;
+                overflow: hidden;
+                position: absolute;
+                top: 15px;
+                right: 8px;
+            }
 
             &:hover{
                     color: $pink;
@@ -579,12 +617,14 @@ export default {
         .cart{
             padding: 1rem;
             top: 73px;
-            left: -48.5px;
+            left: -47.5px;
             background-color: $white;
             width: 300px;
-            height: 400px;
+            height: max-content;
+            max-height: 400px;
             overflow: auto;
             border: 1px solid black;
+            border-top: 0;
             &::-webkit-scrollbar {
                 display: none;
                 }
