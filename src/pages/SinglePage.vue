@@ -1,40 +1,45 @@
 <template>
     <HeroComponent :isVisible="false"></HeroComponent>
-    <section v-if="product" class="p-4 d-flex justify-content-center mt-5">
-        <div class="single-card row">
-            <div class="img-box col-lg-6 col-md-6 col-sm-12">
-                <img v-if="product.image" :src="`${store.imagePath}${product.image}`" class="card-img-top single-img" alt="...">
-                <img v-else src="https://picsum.photos/1200/600?random=1" class="card-img-top single-img">
-                <div class="price">{{ product.price }}&euro;</div>
-            </div>
-            <div class="single-info d-flex flex-column justify-content-around col-lg-6 col-md-6 col-sm-12">
-                <div class="first-info">
-                    <h1 class="text-capitalize mb-4 title">{{ product.name }}</h1>
-                    <div class="description">
-                        <p v-if="product.description" class="m-0">{{ product.description }}</p>
+    <section class="container py-4">
+        <router-link :to="{ name: 'products'}"><h4 class="backwards"><i class="fa-solid fa-circle-arrow-left fs-6"></i> Prodotti</h4></router-link>
+        <div v-if="product" class=" d-flex justify-content-center mt-5">
+            <div class="single-card row">
+                <div class="img-box col-lg-6 col-md-6 col-sm-12">
+                    <div class="d-flex">
+                        <img v-if="product.image" :src="`${store.imagePath}${product.image}`" class="card-img-top single-img" alt="...">
+                        <img v-else src="https://picsum.photos/1200/600?random=1" class="card-img-top single-img">
                     </div>
+                    <div class="price">{{ product.price }}&euro;</div>
                 </div>
-                <div class="second-info">
-                    <div class="d-flex justify-content-around text-capitalize mb-4">
-                        <div class="d-flex flex-column">
-                            <div class="mb-2">Tipo:</div>
-                            {{ product.type.name }}
-                        </div>
-                        <div class="d-flex flex-column">
-                            <div class="mb-2">Categoria:</div>
-                            {{ product.category.name }}
-                        </div>
-                        <div class="d-flex flex-column">
-                            <div class="mb-2">Brand:</div>
-                            {{ product.brand.name }}
+                <div class="single-info d-flex flex-column justify-content-around col-lg-6 col-md-6 col-sm-12">
+                    <div class="first-info">
+                        <h1 class="text-capitalize mb-4 title">{{ product.name }}</h1>
+                        <div class="description mb-4">
+                            <p v-if="product.description" class="m-0">{{ product.description }}</p>
                         </div>
                     </div>
-                    <div class="bd"></div>
-                    <div class="mt-4">
-                        <div class="d-flex justify-content-around">
-                            <div>Rating:{{ product.rating }} </div>
-                            <div>{{ product.available ? 'Disponibile' : 'Non disponibile' }}</div>
-                            <div><i class="fa-regular fa-heart"></i></div>
+                    <div class="second-info">
+                        <div class="d-flex justify-content-around text-capitalize mb-4">
+                            <div class="d-flex flex-column">
+                                <div class="mb-2">Tipo:</div>
+                                {{ product.type.name }}
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="mb-2">Categoria:</div>
+                                {{ product.category.name }}
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="mb-2">Brand:</div>
+                                {{ product.brand.name }}
+                            </div>
+                        </div>
+                        <div class="bd"></div>
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-around">
+                                <div>Rating:{{ product.rating }} </div>
+                                <div>{{ product.available ? 'Disponibile' : 'Non disponibile' }}</div>
+                                <div><i class="fa-regular fa-heart"></i></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,8 +92,20 @@ import HeroComponent from '../components/HeroComponent.vue';
 <style lang="scss" scoped>
 @use '../assets/partials/variables' as *;
 
+.backwards {
+    font: normal normal normal 20px/35px "libre baskerville", serif;
+    cursor: pointer;
+    transform-origin: 0;
+    transition: all .55s;
+
+    &:hover {
+        color: $pink;
+        transform: scale(1.3);
+    }
+}
+
 .single-card {
-    width: 1100px;
+    width: 1300px;
     color: $rich-green;
     border-width: 1px;
     border-color: rgba(230, 190, 190, 0.97);
@@ -97,6 +114,12 @@ import HeroComponent from '../components/HeroComponent.vue';
     .img-box {
         position: relative;
         padding: 0;
+
+        img {
+            // width: 400px;
+            height: auto;
+        }
+
         .price {
             font: normal normal normal 20px/35px "libre baskerville", serif;
             position: absolute;

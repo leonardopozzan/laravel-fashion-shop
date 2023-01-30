@@ -1,14 +1,14 @@
 <template>
     <div class="my-card">
         <div class="images">
-            <img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="...">
+            <router-link :to="{ name: 'single-page', params: { slug: product.slug } }"><img :src="`${store.imagePath}${product.image}`" class="img-fluid" alt="..."></router-link>
             <div class="price">{{ product.price }}&euro;</div>
         </div>
         <div class="description">
             <div class="my-card-body">
                 <div class="my-card-info d-flex flex-column">
-                    <h1 class="my-card-title mb-4">{{ product.name }}</h1>
-                    <p v-if="product.description" class="my-card-text"> {{ truncateContent(product.description) }}</p>
+                    <router-link :to="{ name: 'single-page', params: { slug: product.slug } }"><h1 class="my-card-title mb-4">{{ product.name }}</h1></router-link>
+                    <router-link :to="{ name: 'single-page', params: { slug: product.slug } }"><p v-if="product.description" class="my-card-text"> {{ truncateContent(product.description) }}</p></router-link>
                     <div class="d-flex justify-content-around text-capitalize mb-4 filter">
                         <div class="d-flex flex-column">
                             <p class="mb-2">Tipo:</p>
@@ -83,21 +83,21 @@ export default {
     }
 
     .price {
-        font: normal normal normal 15px/35px "libre baskerville", serif;
+        font: normal normal normal 17px/35px "libre baskerville", serif;
         position: absolute;
         top: 0px;
-        // right: -30px;
         background-color: $pink;
-        padding: 5px 7px;
-        // border-radius: 5px;
-        cursor: pointer;
+        padding: 12px;
+        // cursor: pointer;
         transform-origin: 0 0;
-        transition: transform .25s, visibility .25s ease-in;
+        // transition: transform .55s, visibility .55s ease-in;
+        transition: all .55s;
 
         &:hover {
-            transform: scale(1.2);
+            background-color: $rich-green;
+            color: $pink;
+            transform: scale(1.3);
         }
-
     }
 }
 
