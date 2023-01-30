@@ -4,7 +4,7 @@ import ProductList from './pages/ProductList.vue';
 import ContactsPage from './pages/ContactsPage.vue';
 import AboutUs from './pages/AboutUs.vue';
 import SinglePage from './pages/SinglePage.vue';
-
+import NotfoundPage from './pages/NotFoundPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -40,6 +40,12 @@ const router = createRouter({
             component: SinglePage,
         },
 
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            component: NotfoundPage,
+        },
+        
     ]
 })
 export { router };

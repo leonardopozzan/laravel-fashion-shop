@@ -1,8 +1,7 @@
 <template>
     <div class="hero-card">
         <div class="overlay"></div>
-        <video src="video\pexels-thirdman-8056845.mp4" controls autoplay muted loop class="w-100"></video>
-        <!-- <img src="../img/img-leo.jpg" alt="products"> -->
+        <video src="video\pexels-thirdman-8056845.mp4" autoplay muted loop class="w-100"></video>
         <router-link :to="{ name: 'products' }"><button type="button">View more</button></router-link>
     </div>
 </template>
@@ -43,12 +42,12 @@ export default {
         transform: translate(-50%, 50%);
         border: 0px;
         background-color: $pink;
-        color: $green;
+        color: $rich-green;
         padding: 12px 26px;
         transition: all 0.2s ease-out;
 
         &:hover {
-            background-color: $green;
+            background-color: $rich-green;
             color: $pink;
         }
     }

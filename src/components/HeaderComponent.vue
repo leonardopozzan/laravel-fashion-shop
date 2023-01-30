@@ -64,7 +64,7 @@
                         </Transition>
                     </li>
                     <li class="my-dropdown-title"><router-link :to="{ name: 'contacts' }" class="text-uppercase">contacts</router-link></li>
-                    <li class="my-dropdown-title"><router-link :to="{ name: 'home' }" class="text-uppercase">About Us</router-link></li>
+                    <li class="my-dropdown-title"><router-link :to="{ name: 'about' }" class="text-uppercase">About Us</router-link></li>
                 </ul>
             </div>
             <div :class="{'d-none' : !sidebar}" class="d-lg-block me-lg-3">

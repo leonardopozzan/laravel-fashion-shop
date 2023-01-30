@@ -2,7 +2,7 @@
     <div class="cards-container d-flex flex-wrap" id="container-media">
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180630-4-xhqdne.jpg" alt="">
+                <img src="\img\open-uri20180708-4-4bvqii.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>No Filter Foundation</h4>
@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180708-4-13okqci.jpg" alt="">
+                <img src="\img\open-uri20180708-4-13okqci.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>Lippie Pencil</h4>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180630-4-1bl3btv.jpg" alt="">
+                <img src="\img\open-uri20180630-4-1bl3btv.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>Bronzer - loose</h4>
