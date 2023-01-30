@@ -231,7 +231,7 @@ h2 {
   
   &__prev, &__next {
     position: absolute;
-    top: 700px;
+    top: 100%;
     
     i {
         transition: transform 0.25s ease;

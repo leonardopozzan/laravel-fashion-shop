@@ -132,7 +132,6 @@ section {
             
             &:hover .card-content {
                 transform: rotateY( 180deg ) ;
-                box-shadow: none;
             }
             
             .card-content {
@@ -144,11 +143,12 @@ section {
                 border: 2px solid $rich-green;
                 .front {
                     padding: 25px 0px;
-                    box-shadow: 9px 8px 8px rgba(73, 73, 73, 0.76);
+                    // box-shadow: 8px 8px 10px rgba(62, 62, 62, 0.76);
 
                     .img-profile{
-                        width: 65%;
+                        width: 68%;
                         height: 100%;
+                        border: 2px solid $rich-green;
                     }
 
                     .card-body{
@@ -160,7 +160,7 @@ section {
                             
                             .profile-name {
                                 display: block;
-                                font-size: $font-medium-large;
+                                font-size: $font-medium-plus;
                                 font-weight: bold;
                                 letter-spacing: 0.8px;
                                 text-transform: uppercase;
@@ -232,11 +232,11 @@ section {
                     color: $rich-green;
                     text-align: center;
                     transform: rotateY( 180deg );
-                    box-shadow: 9px 8px 8px rgba(73, 73, 73, 0.76);
+                    // box-shadow: 8px 8px 10px rgba(62, 62, 62, 0.76);
 
 
                     span {
-                        font-size: $font-medium-large;
+                        font-size: $font-medium-plus;
                         font-weight: bold;
                         display: block;
                         padding-bottom: 15px;

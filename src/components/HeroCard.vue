@@ -1,8 +1,7 @@
 <template>
     <div class="hero-card">
         <div class="overlay"></div>
-        <video src="video\pexels-thirdman-8056845.mp4" controls autoplay muted loop class="w-100"></video>
-        <!-- <img src="../img/img-leo.jpg" alt="products"> -->
+        <video src="video\pexels-thirdman-8056845.mp4" autoplay muted loop class="w-100"></video>
         <router-link :to="{ name: 'products' }"><button type="button">View more</button></router-link>
     </div>
 </template>
@@ -17,8 +16,13 @@ export default {
 @use '../assets/partials/variables' as *;
 
 .hero-card {
+    margin-top: 20px;
+    aspect-ratio: 16/9;
     width: 100%;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     .overlay {
         position: absolute;
@@ -30,11 +34,6 @@ export default {
         opacity: 0;
     }
 
-    img {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-    }
 
     button {
         position: absolute;
@@ -43,14 +42,28 @@ export default {
         transform: translate(-50%, 50%);
         border: 0px;
         background-color: $pink;
-        color: $green;
+        color: $rich-green;
         padding: 12px 26px;
         transition: all 0.2s ease-out;
 
         &:hover {
-            background-color: $green;
+            background-color: $rich-green;
             color: $pink;
         }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .hero-card {
+        min-width: 438px;
+    }
+}
+
+
+@media (max-width: 522px) {
+    .hero-card {
+        min-width: 300px;
     }
 }
 </style>

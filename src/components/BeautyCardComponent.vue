@@ -2,7 +2,7 @@
     <div class="cards-container d-flex flex-wrap" id="container-media">
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180630-4-xhqdne.jpg" alt="">
+                <img src="\img\open-uri20180708-4-4bvqii.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>No Filter Foundation</h4>
@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180708-4-13okqci.jpg" alt="">
+                <img src="\img\open-uri20180708-4-13okqci.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>Lippie Pencil</h4>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-4 col-sm-12 col-12 single-card-container">
             <div class="image-card">
-                <img src="img\open-uri20180630-4-1bl3btv.jpg" alt="">
+                <img src="\img\open-uri20180630-4-1bl3btv.jpg" alt="">
             </div>
             <div class="mt-4">
                 <h4>Bronzer - loose</h4>
@@ -28,7 +28,7 @@
             <button class="custom-btn btn-12 mt-5"><span>Click me!</span><span>Read More</span></button>
         </div>
     </div>
-    
+
 </template>
 
 <script>
@@ -52,6 +52,7 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 20px;
 
         &:nth-child(2) {
             background-color: $pink;
@@ -62,13 +63,18 @@ export default {
         }
 
         .image-card {
-            width: 45%;
-            height: 50%;
+            // width: 45%;
+            // height: 50%;
+            // min-height: 120px;
+            max-width: 250px;
+            aspect-ratio: 1/1;
             overflow: hidden;
-            object-fit: fill;
+
             img {
                 width: 100%;
                 height: 100%;
+                display: block;
+                object-fit: fill;
                 transition: 1.2s;
                 cursor: pointer;
 
@@ -81,6 +87,7 @@ export default {
 
         div h4 {
             color: $white;
+            text-align: center;
         }
 
         .btn-12 {
@@ -159,21 +166,11 @@ export default {
 
     }
 
-    @media screen and (min-width: 768px) {
-        #container-media {
-            width: 100%;
-        } ;
-        .image-card{
-            height: 30% !important;
+    @media (max-width: 768px) {
+        .single-card-container {
+            padding: 42px !important;
         }
-    }
-    @media screen and (min-width: 1200px) {
-        #container-media {
-            width: 100%;
-        } ;
-        .image-card{
-            height: 50% !important;
-        }
+
     }
 }
 </style>
