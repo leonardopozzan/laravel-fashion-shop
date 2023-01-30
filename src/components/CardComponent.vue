@@ -167,17 +167,18 @@ export default {
     }
     .cart{
         position: absolute;
-        top: 70px;
+        top: 90px;
         left: 0px;
         background-color: $pink;
         padding: 5px 7px;
         // border-radius: 5px;
         cursor: pointer;
         transform-origin: 0 0;
-        transition: transform .25s, visibility .25s ease-in;
+        transition: transform .55, visibility .55s ease-in;
+        transition: all .55s;
         button{
             i{
-            color: $rich-green;
+                color: $rich-green;
 
             }
             background-color: $pink;
@@ -264,6 +265,27 @@ export default {
         font-size: 12px;
         gap: 15px;
     }
+    .images {
+        .price {
+            font: normal normal normal 14px/35px "libre baskerville", serif;
+            position: absolute;
+            top: 0px;
+            background-color: $pink;
+            padding: 8px;
+            // cursor: pointer;
+            transform-origin: 0 0;
+            // transition: transform .55s, visibility .55s ease-in;
+            transition: all .80s;
+    
+            &:hover {
+                background-color: $rich-green;
+                color: $pink;
+                transform: scale(1.1);
+            }
+        }
+    }
+    
+
 }
 
 .bd {

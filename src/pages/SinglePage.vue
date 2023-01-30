@@ -19,34 +19,36 @@
                         </div>
                     </div>
                     <div class="second-info">
-                        <div class="d-flex justify-content-around text-capitalize mb-4">
-                            <div class="d-flex flex-column">
+                        <div class="row text-capitalize justify-content-around mb-4">
+                            <div class="col-lg-3 col-md-3 col-3">
                                 <div class="mb-2 fw-bold">Tipo:</div>
                                 {{ products.type.name }}
                             </div>
-                            <div class="d-flex flex-column">
+                            <div class="col-lg-3 col-md-3 col-3">
                                 <div class="mb-2 fw-bold">Categoria:</div>
                                 {{ products.category.name }}
                             </div>
-                            <div class="d-flex flex-column">
+                            <div class="col-lg-3 col-md-3 col-3">
                                 <div class="mb-2 fw-bold">Brand:</div>
                                 {{ products.brand.name }}
                             </div>
                         </div>
                         <div class="bd"></div>
                         <div class="my-4">
-                            <div class="d-flex justify-content-around">
-                                <div class="fw-bold">Rating:{{ products.rating }} </div>
-                                <div class="fw-bold">{{ products.available ? 'Disponibile' : 'Non disponibile' }}</div>
-                                <div><i class="fa-regular fa-heart"></i></div>
+                            <div class="row justify-content-around">
+                                <div class="col-lg-3 col-md-3 col-3"><span class="fw-bold">Rating:</span> {{ products.rating }} </div>
+                                <div class="fw-bold col-lg-3 col-md-3 col-3">{{ products.available ? 'Disponibile' : 'Non disponibile' }}</div>
+                                <div class="col-lg-3 col-md-3 col-3"><i class="fa-regular fa-heart"></i></div>
                             </div>
                         </div>
                         <div class="bd"></div>
                         <div class="mt-4">
-                            <div class="d-flex flex-column">
-                                <div class="fw-bold mb-2">Tags:</div>
-                                <div class="row" v-if="products.tags && products.tags.length > 0">
-                                    <div v-for="(tag, index) in products.tags" class="col-lg-4 col-md-4 col-sm-4 col-4" :key="index">{{ tag.name }}</div>
+                            <div class="row justify-content-around">
+                                <div class="fw-bold mb-2 col-lg-1 col-md-12 col-1">Tags:</div>
+                                <div class="col-lg-9 col-md-12 col-9" v-if="products.tags && products.tags.length > 0">
+                                    <div class="row">
+                                        <div v-for="(tag, index) in products.tags" class="col-lg-5 col-md-5 col-sm-4 col-4" :key="index">{{ tag.name }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,6 +138,7 @@ import HeroComponent from '../components/HeroComponent.vue';
             transform-origin: 0 0;
             // transition: transform .55s, visibility .55s ease-in;
             transition: all .55s;
+            cursor: pointer;
     
             &:hover {
                 background-color: $rich-green;

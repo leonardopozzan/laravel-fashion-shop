@@ -49,6 +49,8 @@
             </div>
         </section>
     </div>
+    <ChatComponent />
+    <ScrollTopComponent />
 </template>
 
 <script>

@@ -123,15 +123,16 @@ export default {
 
 .container-sm {
     margin-top: 120px;
+    color: $rich-green;
 
 
     .contact-form {
 
 
         .contact-us {
-
+            // color: $rich-green;
             padding: 64px 142px;
-            border: 18px solid black;
+            border: 18px solid $rich-green;
             margin-bottom: 94px;
 
             h1 {
@@ -209,6 +210,10 @@ export default {
             font-size: $font-large;
         }
 
+    }
+
+    h6 {
+        color: $rich-green;
     }
 
 
