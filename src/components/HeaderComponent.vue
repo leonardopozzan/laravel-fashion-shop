@@ -1,73 +1,81 @@
 <template>
     <header>
-        <nav class="my-navbar d-lg-flex justify-content-between align-items-center" ref="navbar" :class="{'my-sidebar' : sidebar}">
-            <div class="img-box d-lg-none ms-3" :class="{'d-none' : sidebar}">
-                <router-link :to="{ name: 'home' }"><img src="../img/logo.png" alt=""></router-link>
+        <nav class="my-navbar d-lg-flex justify-content-between align-items-center" ref="navbar"
+            :class="{ 'my-sidebar': sidebar }">
+            <div class="img-box d-lg-none ms-3" :class="{ 'd-none': sidebar }">
+                <router-link :to="{ name: 'home' }"><img src="/img/logo-vale.png" alt=""></router-link>
             </div>
-            <button @click="showSidebar()" :class="{'d-none' : sidebar}" class="d-lg-none me-3">
+            <button @click="showSidebar()" :class="{ 'd-none': sidebar }" class="d-lg-none me-3">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <div class="nav-menu d-lg-block" :class="{'d-none' : !sidebar}">
+            <div class="nav-menu d-lg-block" :class="{ 'd-none': !sidebar }">
                 <ul class="d-lg-flex align-items-center">
-                    <li class="img-box ms-lg-3"><router-link :to="{ name: 'home' }"><img src="../img/logo.png" alt=""></router-link></li>
+                    <li class="img-box ms-lg-3"><router-link :to="{ name: 'home' }"><img src="/img/logo-vale.png"
+                                alt=""></router-link></li>
                     <li class="close-sidebar d-lg-none" @click="hideSidebar()"><i class="fa-solid fa-xmark"></i></li>
                     <li class="my-dropdown-title">
-                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{'hover': makeUp}" >
+                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{ 'hover': makeUp }">
                             <span>make up </span>
-                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{'rotated': makeUp}" @click.prevent="showMakeUp()"></i> 
-                            <i class="ms-1 fs-5 fa-solid fa-caret-right d-none" :class="{'rotated': makeUp}" @click.prevent="showMakeUp()"></i>
+                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{ 'rotated': makeUp }"
+                                @click.prevent="showMakeUp()"></i>
+                            <i class="ms-1 fs-5 fa-solid fa-caret-right d-none" :class="{ 'rotated': makeUp }"
+                                @click.prevent="showMakeUp()"></i>
                         </router-link>
-                        
+
                         <Transition>
                             <div class="my-dropdown-menu" v-if="makeUp" @mouseleave="makeUp = false">
-                                <div v-for="(item,i) in makeUpLinks" :key="i">
+                                <div v-for="(item, i) in makeUpLinks" :key="i">
                                     <div class="text-uppercase">{{ item.title }}</div>
                                     <ul>
-                                        <li v-for="(link,j) in item.links" :key="j">{{ link }}</li>
+                                        <li v-for="(link, j) in item.links" :key="j">{{ link }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </Transition>
                     </li>
                     <li class="my-dropdown-title">
-                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{'hover': skinCare}" >
+                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{ 'hover': skinCare }">
                             <span>skin care</span>
-                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{'rotated': skinCare}" @click.prevent="showSkinCare()"></i> 
+                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{ 'rotated': skinCare }"
+                                @click.prevent="showSkinCare()"></i>
                         </router-link>
-                        
+
                         <Transition>
                             <div class="my-dropdown-menu width-large" v-if="skinCare" @mouseleave="skinCare = false">
-                                <div v-for="(item,i) in skinCareLinks" :key="i">
+                                <div v-for="(item, i) in skinCareLinks" :key="i">
                                     <div class="text-uppercase">{{ item.title }}</div>
                                     <ul>
-                                        <li v-for="(link,j) in item.links" :key="j">{{ link }}</li>
+                                        <li v-for="(link, j) in item.links" :key="j">{{ link }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </Transition>
                     </li>
                     <li class="my-dropdown-title">
-                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{'hover': sale}" >
+                        <router-link :to="{ name: 'products' }" class="text-uppercase" :class="{ 'hover': sale }">
                             <span>sale </span>
-                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{'rotated': sale}" @click.prevent="showSale()"></i> 
+                            <i class="ms-1 fs-5 fa-solid fa-caret-down" :class="{ 'rotated': sale }"
+                                @click.prevent="showSale()"></i>
                         </router-link>
-                        
+
                         <Transition>
                             <div class="my-dropdown-menu" v-if="sale" @mouseleave="sale = false">
-                                <div v-for="(item,i) in saleLinks" :key="i">
+                                <div v-for="(item, i) in saleLinks" :key="i">
                                     <div class="text-uppercase">{{ item.title }}</div>
                                     <ul>
-                                        <li v-for="(link,j) in item.links" :key="j">{{ link }}</li>
+                                        <li v-for="(link, j) in item.links" :key="j">{{ link }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </Transition>
                     </li>
-                    <li class="my-dropdown-title"><router-link :to="{ name: 'contacts' }" class="text-uppercase">contacts</router-link></li>
-                    <li class="my-dropdown-title"><router-link :to="{ name: 'about' }" class="text-uppercase">About Us</router-link></li>
+                    <li class="my-dropdown-title"><router-link :to="{ name: 'contacts' }"
+                            class="text-uppercase">contacts</router-link></li>
+                    <li class="my-dropdown-title"><router-link :to="{ name: 'about' }" class="text-uppercase">About
+                            Us</router-link></li>
                 </ul>
             </div>
-            <div :class="{'d-none' : !sidebar}" class="d-lg-block me-lg-3">
+            <div :class="{ 'd-none': !sidebar }" class="d-lg-block me-lg-3">
                 <div class="socials-icon d-flex flex-column flex-lg-row">
                     <div class="icon"><i class="fa-brands fa-instagram"></i></div>
                     <div class="icon"><i class="fa-brands fa-facebook-f"></i></div>
@@ -87,7 +95,8 @@
             </div> -->
         </nav>
     </header>
-    <div class="overlay" v-if="sale || makeUp || skinCare" @mouseover="sale = false, makeUp = false, skinCare = false" @click="hideSidebar()"></div>
+    <div class="overlay" v-if="sale || makeUp || skinCare" @mouseover="sale = false, makeUp = false, skinCare = false"
+        @click="hideSidebar()"></div>
 
 </template>
 
@@ -104,11 +113,11 @@ export default {
             sale: false,
             makeUp: false,
             skinCare: false,
-            sidebar : false,
-            saleLinks : [
+            sidebar: false,
+            saleLinks: [
                 {
-                    title : 'Shop by Category',
-                    links : [
+                    title: 'Shop by Category',
+                    links: [
                         'View All',
                         'Skin Care Sale',
                         'Make Up Sale',
@@ -119,8 +128,8 @@ export default {
                     ]
                 },
                 {
-                    title : 'Shop by Category',
-                    links : [
+                    title: 'Shop by Category',
+                    links: [
                         'Save 50%',
                         'Save 40%',
                         'Save 30%',
@@ -129,8 +138,8 @@ export default {
                     ]
                 },
                 {
-                    title : 'Shop our Offers',
-                    links : [
+                    title: 'Shop our Offers',
+                    links: [
                         'Free Gifts',
                         'Saver Sets',
                         'Supersizes',
@@ -139,8 +148,8 @@ export default {
             ],
             skinCareLinks: [
                 {
-                    title : 'Cleansers, Toners & Mists',
-                    links : [
+                    title: 'Cleansers, Toners & Mists',
+                    links: [
                         'View All Cleansers',
                         'View All Toners',
                         'Cleansing Balms',
@@ -154,8 +163,8 @@ export default {
                     ]
                 },
                 {
-                    title : 'Moisturisers & Serums',
-                    links : [
+                    title: 'Moisturisers & Serums',
+                    links: [
                         'View All Moisturisers',
                         'View All Serums',
                         'SPF',
@@ -184,8 +193,8 @@ export default {
                 //     ]
                 // },
                 {
-                    title : 'Masks & Exfoliators',
-                    links : [
+                    title: 'Masks & Exfoliators',
+                    links: [
                         'View All Masks',
                         'View All Exfoliators',
                         'Sheet Masks',
@@ -201,8 +210,8 @@ export default {
             ],
             makeUpLinks: [
                 {
-                    title : 'Complexion',
-                    links : [
+                    title: 'Complexion',
+                    links: [
                         'Foundation',
                         'Concealer',
                         'Primer',
@@ -218,8 +227,8 @@ export default {
                     ]
                 },
                 {
-                    title : 'Make Up Tools',
-                    links : [
+                    title: 'Make Up Tools',
+                    links: [
                         'Eyelash Curlers',
                         'Tweezers',
                         'Make Up Sponges',
@@ -233,32 +242,32 @@ export default {
             ]
         }
     },
-    methods:{
-        showMakeUp(){
+    methods: {
+        showMakeUp() {
             this.makeUp = !this.makeUp;
             this.sale = false
             this.skinCare = false
-        }, showSkinCare(){
+        }, showSkinCare() {
             this.skinCare = !this.skinCare;
             this.sale = false
             this.makeUp = false
         },
-        showSale(){
+        showSale() {
             this.sale = !this.sale;
             this.makeUp = false
             this.skinCare = false
         },
-        showSidebar(){
+        showSidebar() {
             this.sidebar = true
         },
-        hideSidebar(){
+        hideSidebar() {
             this.sidebar = false
         }
     },
-    mounted(){
+    mounted() {
         window.addEventListener('scroll', () => {
             let scrollPos = window.scrollY
-            if(scrollPos >= 10){
+            if (scrollPos >= 10) {
                 this.$refs.navbar.classList.add('backdrop-blur')
             } else {
                 this.$refs.navbar.classList.remove('backdrop-blur')
@@ -274,23 +283,26 @@ export default {
 @use '../assets/partials/variables' as *;
 @use '../assets/partials/minxins' as *;
 
-.backdrop-blur{
+.backdrop-blur {
     backdrop-filter: blur(10px);
 }
-.overlay {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background-color: black;
-        opacity: 0.4;
-        z-index: 1000;
-    }
-    .rotated{
-        transform: rotate(-90deg);
 
-    }
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.4;
+    z-index: 1000;
+}
+
+.rotated {
+    transform: rotate(-90deg);
+
+}
+
 .my-navbar {
     transition: 0.3s;
     position: fixed;
@@ -300,46 +312,54 @@ export default {
     color: $rich-green;
     z-index: 1100;
     display: flex;
-    button{
+
+    button {
         border: 0;
         background-color: $white;
         color: $rich-green;
         padding: 0.5rem;
         border-radius: 0.4rem;
-        &:hover{
+
+        &:hover {
             background-color: $pink;
         }
     }
-    &.my-sidebar{
+
+    &.my-sidebar {
         height: 100vh;
         background-color: $white;
         display: block;
         width: max-content;
     }
+
     .socials-icon {
         display: flex;
-        .icon{
+
+        .icon {
             padding: 0.5rem 1rem;
-            &:hover{
-                    color: $pink;
-                    background-color: $white;
-                }
-        }
-            i {
-                font-weight: $font-w-medium;
-                font-size: $font-medium-plus;
-                cursor: pointer;
-                
+
+            &:hover {
+                color: $pink;
+                background-color: $white;
             }
         }
 
-        .img-box{
-                width: 60px;
-            }
+        i {
+            font-weight: $font-w-medium;
+            font-size: $font-medium-plus;
+            cursor: pointer;
+
+        }
+    }
+
+    .img-box {
+        width: 60px;
+    }
+
     .nav-menu {
 
         ul {
-            .close-sidebar{
+            .close-sidebar {
                 position: absolute;
                 top: -15px;
                 right: 10px;
@@ -347,30 +367,35 @@ export default {
                 font-weight: bold;
                 cursor: pointer;
             }
-            
+
             li:not(:first-child) {
                 padding: 1.5rem 0.6rem;
-                a{
+
+                a {
                     padding: 1.5rem 0.6rem;
                     transition: 0.5s;
+
                     &.hover {
                         color: $pink;
                     }
+
                     &:hover {
                         color: $pink;
                     }
                 }
             }
         }
-        
-        .my-dropdown-title{
-            i{
+
+        .my-dropdown-title {
+            i {
                 transition: transform 0.5s;
             }
-            & > a{
+
+            &>a {
                 font-weight: bold;
             }
-            .my-dropdown-menu{
+
+            .my-dropdown-menu {
                 position: absolute;
                 top: 0;
                 left: 139px;
@@ -379,15 +404,19 @@ export default {
                 width: 250px;
                 height: 100vh;
                 overflow: auto;
+
                 &::-webkit-scrollbar {
                     display: none;
-                    }
-                & > *{
+                }
+
+                &>* {
                     padding: 1rem;
-                    & *{
+
+                    & * {
                         padding: 0.3rem;
                         cursor: pointer;
-                        & li:hover{
+
+                        & li:hover {
                             background-color: rgba($color: #000000, $alpha: 0.3);
                         }
                     }
@@ -395,6 +424,7 @@ export default {
             }
         }
     }
+
     // .social{
     //         @include dflex();
     //         img:hover{
@@ -458,76 +488,83 @@ export default {
     //     }
 
 }
+
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 
 @media screen and (min-width: 992px) {
-    .rotated{
+    .rotated {
         transform: rotate(-180deg);
     }
+
     .my-navbar {
-    .socials-icon {
-        .icon{
-            color: $pink;
-            padding: 1.5rem 1rem;
-            &:hover{
+        .socials-icon {
+            .icon {
+                color: $pink;
+                padding: 1.5rem 1rem;
+
+                &:hover {
                     color: $rich-green;
                     background-color: $white;
                 }
-        }
-        }
-
-    .nav-menu {
-        &.my-sidebar{
-        height: max-content;
-        background-color: initial;
-        width: 100%;
-    }
-
-        ul {
-            
-            li:not(:first-child) {
-                padding: 0;
-
-                a{
-                    color: $pink;
-                    &.hover {
-                        background-color: $white;
-                        color: $rich-green;
-                    }
-                    &:hover {
-                        background-color: $white;
-                        color: $rich-green;
-                    }
-                }
             }
         }
-        
-        .my-dropdown-title{
-            
-            position: relative;
-            .my-dropdown-menu{
-                display: flex;
-                width: 430px;
-                top: 48.5px;
-                left: 0;
-                width: 430px;
+
+        .nav-menu {
+            &.my-sidebar {
                 height: max-content;
-                overflow: initial;
-                &.width-large{
-                width: 750px;
-                left: -150px;
+                background-color: initial;
+                width: 100%;
+            }
+
+            ul {
+
+                li:not(:first-child) {
+                    padding: 0;
+
+                    a {
+                        color: $pink;
+
+                        &.hover {
+                            background-color: $white;
+                            color: $rich-green;
+                        }
+
+                        &:hover {
+                            background-color: $white;
+                            color: $rich-green;
+                        }
+                    }
+                }
+            }
+
+            .my-dropdown-title {
+
+                position: relative;
+
+                .my-dropdown-menu {
+                    display: flex;
+                    width: 430px;
+                    top: 48.5px;
+                    left: 0;
+                    width: 430px;
+                    height: max-content;
+                    overflow: initial;
+
+                    &.width-large {
+                        width: 750px;
+                        left: -150px;
+                    }
                 }
             }
         }
     }
-}
 }
 </style>
